@@ -24,7 +24,7 @@ public final class ReadProperties {
     }
 
     public String getURL() {
-        return properties.getProperty("url");
+        return properties.getProperty("baseUrl");
     }
 
     public String getBrowserName() {
@@ -32,7 +32,7 @@ public final class ReadProperties {
     }
 
     public boolean isHeadless() {
-        return properties.getProperty("headless").equalsIgnoreCase("true");
+        return properties.getProperty("isHeadless").equalsIgnoreCase("true");
     }
 
     public int getTimeOut() {

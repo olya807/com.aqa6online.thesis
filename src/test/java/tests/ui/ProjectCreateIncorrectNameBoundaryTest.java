@@ -10,14 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProjectCreatePage;
-import pages.ProjectPage;
 import pages.ProjectsPage;
 
-import static com.codeborne.selenide.Selenide.open;
+public class ProjectCreateIncorrectNameBoundaryTest extends BaseTest {
 
-public class ProjectCreateIncorrectNameTest extends BaseTest {
-
-    Logger logger = LoggerFactory.getLogger(ProjectCreateIncorrectNameTest.class);
+    Logger logger = LoggerFactory.getLogger(ProjectCreateIncorrectNameBoundaryTest.class);
     ProjectsPage projectsPage;
     ProjectCreatePage projectCreatePage;
 

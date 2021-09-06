@@ -12,9 +12,9 @@ import pages.LoginPage;
 import pages.ProjectPage;
 import pages.ProjectsPage;
 
-public class SuiteCreateTest extends BaseTest {
+public class ProjectCreatedAlertTest extends BaseTest {
 
-    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameTest.class);
+    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
@@ -24,7 +24,6 @@ public class SuiteCreateTest extends BaseTest {
 
         String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
         String projectCreatedSuccessMessage = String.format("Project \"%s\" was created successfully!" , randomProjectName);
-        String projectCreatedAlreadyExistsMessage = "Project with the same code already exists.";
 
         projectsPage = new LoginPage(true)
                 .setEmail(ReadProperties.getInstance().getUsername())
@@ -39,21 +38,5 @@ public class SuiteCreateTest extends BaseTest {
         projectPage
                 .getAlertMessage()
                     .shouldHave(Condition.matchText(projectCreatedSuccessMessage));
-    }
-
-    @Test(dependsOnMethods = "checkCreateProjectAlert")
-    @Description("Create suite and check alert message")
-    public void checkCreateSuiteAlert() {
-
-        String randomSuiteName = RandomStringUtils.randomAlphanumeric(10);
-        String suiteCreatedSuccessMessage = "Suite was successfully created.";
-
-        projectPage
-                .clickCreateNewSuiteButton()
-                .setSuiteName(randomSuiteName)
-                .clickSaveSuiteButton()
-                .getAlertMessage()
-                .shouldBe(Condition.visible)
-                .shouldHave(Condition.exactText(suiteCreatedSuccessMessage));
     }
 }

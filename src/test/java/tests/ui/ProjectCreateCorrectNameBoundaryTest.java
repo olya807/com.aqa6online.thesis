@@ -12,11 +12,9 @@ import pages.LoginPage;
 import pages.ProjectPage;
 import pages.ProjectsPage;
 
-import static com.codeborne.selenide.Selenide.open;
+public class ProjectCreateCorrectNameBoundaryTest extends BaseTest {
 
-public class ProjectCreateCorrectNameTest extends BaseTest {
-
-    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameTest.class);
+    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 

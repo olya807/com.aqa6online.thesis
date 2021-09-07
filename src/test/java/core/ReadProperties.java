@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public final class ReadProperties {
-    private static ReadProperties instance;
     protected static Properties properties;
+    private static ReadProperties instance;
 
     private ReadProperties() {
         properties = new Properties();
@@ -45,5 +45,11 @@ public final class ReadProperties {
 
     public String getPassword() {
         return properties.getProperty("password");
+    }
+
+    public String getAPI_URL() {return properties.getProperty("api_url");}
+
+    public String getAPI_Key() {
+        return properties.getProperty("api_key");
     }
 }

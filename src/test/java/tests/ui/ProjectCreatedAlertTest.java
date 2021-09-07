@@ -14,7 +14,7 @@ import pages.ProjectsPage;
 
 public class ProjectCreatedAlertTest extends BaseTest {
 
-    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
+    Logger LOGGER = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
@@ -23,7 +23,7 @@ public class ProjectCreatedAlertTest extends BaseTest {
     public void checkCreateProjectAlert() {
 
         String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-        String projectCreatedSuccessMessage = String.format("Project \"%s\" was created successfully!" , randomProjectName);
+        String projectCreatedSuccessMessage = String.format("Project \"%s\" was created successfully!", randomProjectName);
 
         projectsPage = new LoginPage(true)
                 .setEmail(ReadProperties.getInstance().getUsername())
@@ -35,6 +35,11 @@ public class ProjectCreatedAlertTest extends BaseTest {
                 .setProjectName(randomProjectName)
                 .clickCreateProjectSuccessBtn();
 
+        LOGGER.error(String.format(
+                "Expected Alert text is '%s and was '%s''",
+                projectCreatedSuccessMessage,
+                projectPage.getAlertMessage().getText()
+        ));
         projectPage
                 .getAlertMessage()
                     .shouldHave(Condition.matchText(projectCreatedSuccessMessage));

@@ -14,7 +14,7 @@ import pages.ProjectsPage;
 
 public class ProjectCreateCorrectNameBoundaryTest extends BaseTest {
 
-    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
+    Logger LOGGER = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
@@ -34,6 +34,11 @@ public class ProjectCreateCorrectNameBoundaryTest extends BaseTest {
                 .setProjectName(randomProjectName)
                 .clickCreateProjectSuccessBtn();
 
+        LOGGER.error(String.format(
+                "Expected Project name is '%s' and was '%s'",
+                randomProjectName,
+                projectPage.getProjectNameHeader().getText()
+        ));
         projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
     }
 }

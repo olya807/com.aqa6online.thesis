@@ -14,7 +14,6 @@ import pages.ProjectsPage;
 
 public class ProjectCreateIncorrectNameBoundaryTest extends BaseTest {
 
-    Logger logger = LoggerFactory.getLogger(ProjectCreateIncorrectNameBoundaryTest.class);
     ProjectsPage projectsPage;
     ProjectCreatePage projectCreatePage;
 

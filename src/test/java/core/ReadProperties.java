@@ -46,4 +46,12 @@ public final class ReadProperties {
     public String getPassword() {
         return properties.getProperty("password");
     }
+
+    public String getApiUrl() {
+        return properties.getProperty("apiUrl");
+    }
+
+    public String getApiKey() {
+        return properties.getProperty("apiKey");
+    }
 }

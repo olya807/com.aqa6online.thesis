@@ -9,17 +9,15 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class WorkspacePage extends BasePage {
 
-    public WorkspacePage(boolean openPageByUrl) {
-        super(openPageByUrl);
+    public WorkspacePage(boolean openPageByUrl, String endpoint) {
+        super(openPageByUrl, endpoint);
     }
 
     @Override
-    protected void openPage() {
+    protected void openPage(String endpoint) {
 
         open(ReadProperties.getInstance().getURL() + endpoint);
     }
-
-    public final static String endpoint = "workspace";
 
     private SelenideElement getCustomFieldsMenuItem() {
         return $("a[title='Custom']");

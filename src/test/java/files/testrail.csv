@@ -1,0 +1,5 @@
+﻿"ID","Title","Created By","Created On","Estimate","Forecast","Preconditions","Priority","References","Section","Section Depth","Section Description","Steps (Expected Result)","Steps (Step)","Suite","Suite ID","Type","Updated By","Updated On"
+"C1","First test case","Temp Temps","4/4/2019 10:16 AM","","","Preconditions","High","","Section","0","Section description","1. First step expected result
+2. Second step expected result","1. First step action
+2. Second step action","Test suite","S2","Performance","Temp Temps","4/4/2019 10:17 AM"
+"C2","Second test case","Temp Temps","4/4/2019 10:16 AM","","","","Medium","","Section","0","Section description","","","Test suite","S2","Other","Temp Temps","4/4/2019 10:16 AM"

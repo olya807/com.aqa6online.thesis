@@ -3,29 +3,28 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import endpoints.UiEndpoints;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ProjectCreatePage extends BasePage {
 
-    public ProjectCreatePage(boolean openPageByUrl) {
-        super(openPageByUrl);
+    public ProjectCreatePage(boolean openPageByUrl, String endpoint) {
+        super(openPageByUrl, endpoint);
     }
 
     @Override
-    protected void openPage() {
+    protected void openPage(String endpoint) {
         open(ReadProperties.getInstance().getURL() + endpoint);
     }
-
-    public final static String endpoint = "project/create";
 
     private SelenideElement getProjectNameInput() {
 
         return $("#inputTitle");
     }
 
-    private SelenideElement getProjectCodeInput() {
+    public SelenideElement getProjectCodeInput() {
 
         return $("#inputCode");
     }
@@ -61,6 +60,13 @@ public class ProjectCreatePage extends BasePage {
         return this;
     }
 
+    public ProjectCreatePage setProjectCode(String projectCode){
+
+        getProjectCodeInput().clear();
+        getProjectCodeInput().sendKeys(projectCode);
+        return this;
+    }
+
     public ProjectCreatePage setProjectDescription(String projectDescription){
 
         getProjectDescriptionInput().sendKeys(projectDescription);
@@ -88,7 +94,7 @@ public class ProjectCreatePage extends BasePage {
     public ProjectPage clickCreateProjectSuccessBtn(){
 
         getCreateProjectButton().click();
-        return new ProjectPage();
+        return new ProjectPage(false, UiEndpoints.PROJECT);
     }
 
     public String getProjectNameErrorMessageText(){

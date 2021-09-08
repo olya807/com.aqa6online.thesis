@@ -1,13 +1,24 @@
 package pages;
 
+import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
+import core.ReadProperties;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class ProjectPage {
+public class ProjectPage extends BasePage {
 
-    public final static String endpoint = "project/%s";
+    public ProjectPage(boolean openPageByUrl, String endpoint) {
+        super(openPageByUrl, endpoint);
+    }
+
+    @Override
+    protected void openPage(String endpoint) {
+
+        open(ReadProperties.getInstance().getURL() + endpoint);
+    }
 
     public SelenideElement getProjectNameHeader() {
 

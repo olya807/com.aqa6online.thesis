@@ -3,22 +3,21 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import endpoints.UiEndpoints;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ProjectsPage extends BasePage {
 
-    public ProjectsPage(boolean openPageByUrl) {
-        super(openPageByUrl);
+    public ProjectsPage(boolean openPageByUrl, String endpoint) {
+        super(openPageByUrl, endpoint);
     }
 
     @Override
-    protected void openPage() {
+    protected void openPage(String endpoint) {
         open(ReadProperties.getInstance().getURL() + endpoint);
     }
-
-    public final static String endpoint = "projects";
 
     public SelenideElement getUserMenuIcon() {
 
@@ -33,6 +32,6 @@ public class ProjectsPage extends BasePage {
     public ProjectCreatePage createProjectButtonClick() {
 
         getCreateProjectButton().click();
-        return new ProjectCreatePage(false);
+        return new ProjectCreatePage(false, UiEndpoints.CREATE_PROJECT);
     }
 }

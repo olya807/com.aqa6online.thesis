@@ -3,6 +3,7 @@ package tests.ui;
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import core.ReadProperties;
+import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
@@ -12,9 +13,9 @@ import pages.LoginPage;
 import pages.ProjectPage;
 import pages.ProjectsPage;
 
-public class ProjectCreateCorrectNameBoundaryTest extends BaseTest {
+public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
 
-    Logger LOGGER = LoggerFactory.getLogger(ProjectCreateCorrectNameBoundaryTest.class);
+    Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
@@ -24,7 +25,7 @@ public class ProjectCreateCorrectNameBoundaryTest extends BaseTest {
 
         String randomProjectName = RandomStringUtils.randomAlphanumeric(255);
 
-        projectsPage = new LoginPage(true)
+        projectsPage = new LoginPage(true, UiEndpoints.LOGIN)
                 .setEmail(ReadProperties.getInstance().getUsername())
                 .setPassword(ReadProperties.getInstance().getPassword())
                 .successLoginBtnClick();

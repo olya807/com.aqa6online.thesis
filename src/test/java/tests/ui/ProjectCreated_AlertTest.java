@@ -3,6 +3,7 @@ package tests.ui;
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import core.ReadProperties;
+import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
@@ -12,9 +13,9 @@ import pages.LoginPage;
 import pages.ProjectPage;
 import pages.ProjectsPage;
 
-public class SuiteCreateTest extends BaseTest {
+public class ProjectCreated_AlertTest extends BaseTest {
 
-    Logger logger = LoggerFactory.getLogger(ProjectCreateCorrectNameTest.class);
+    Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
@@ -23,10 +24,9 @@ public class SuiteCreateTest extends BaseTest {
     public void checkCreateProjectAlert() {
 
         String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-        String projectCreatedSuccessMessage = String.format("Project \"%s\" was created successfully!" , randomProjectName);
-        String projectCreatedAlreadyExistsMessage = "Project with the same code already exists.";
+        String projectCreatedSuccessMessage = String.format("Project \"%s\" was created successfully!", randomProjectName);
 
-        projectsPage = new LoginPage(true)
+        projectsPage = new LoginPage(true, UiEndpoints.LOGIN)
                 .setEmail(ReadProperties.getInstance().getUsername())
                 .setPassword(ReadProperties.getInstance().getPassword())
                 .successLoginBtnClick();
@@ -36,24 +36,13 @@ public class SuiteCreateTest extends BaseTest {
                 .setProjectName(randomProjectName)
                 .clickCreateProjectSuccessBtn();
 
+        LOGGER.error(String.format(
+                "Expected Alert text is '%s and was '%s''",
+                projectCreatedSuccessMessage,
+                projectPage.getAlertMessage().getText()
+        ));
         projectPage
                 .getAlertMessage()
                     .shouldHave(Condition.matchText(projectCreatedSuccessMessage));
-    }
-
-    @Test(dependsOnMethods = "checkCreateProjectAlert")
-    @Description("Create suite and check alert message")
-    public void checkCreateSuiteAlert() {
-
-        String randomSuiteName = RandomStringUtils.randomAlphanumeric(10);
-        String suiteCreatedSuccessMessage = "Suite was successfully created.";
-
-        projectPage
-                .clickCreateNewSuiteButton()
-                .setSuiteName(randomSuiteName)
-                .clickSaveSuiteButton()
-                .getAlertMessage()
-                .shouldBe(Condition.visible)
-                .shouldHave(Condition.exactText(suiteCreatedSuccessMessage));
     }
 }

@@ -28,6 +28,7 @@ public class BaseTest {
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
         Configuration.headless = false;
+        Configuration.pageLoadTimeout = 15000;
         //Configuration.fastSetValue = false;
     }
 }

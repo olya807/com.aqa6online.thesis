@@ -3,22 +3,21 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import endpoints.UiEndpoints;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(boolean openPageByUrl) {
-        super(openPageByUrl);
+    public LoginPage(boolean openPageByUrl, String endpoint) {
+        super(openPageByUrl, endpoint);
     }
 
     @Override
-    protected void openPage() {
+    protected void openPage(String endpoint) {
         open(ReadProperties.getInstance().getURL() + endpoint);
     }
-
-    public final static String endpoint = "login";
 
     private SelenideElement getEmailField() {
         return $("#inputEmail");
@@ -58,6 +57,6 @@ public class LoginPage extends BasePage {
 
     public ProjectsPage successLoginBtnClick() {
         loginBtnClick();
-        return new ProjectsPage(false);
+        return new ProjectsPage(false, UiEndpoints.PROJECTS);
     }
 }

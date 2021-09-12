@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
+import models.ui.TestCase;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 

@@ -4,10 +4,10 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
-import models.ui.TestCase;
-import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 
 public class BaseTest {
 
@@ -23,9 +23,10 @@ public class BaseTest {
         org.apache.log4j.BasicConfigurator.configure();
     }
 
-    @BeforeTest
+    @BeforeClass
     public void setup() {
 
+        clearBrowserCookies();
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;

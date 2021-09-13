@@ -1,10 +1,8 @@
-package models;
+package models.api.projectModels;
 
 import com.google.gson.annotations.Expose;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Builder
@@ -13,6 +11,7 @@ public class Project{
     String title;
     @Expose
     String code;
+    @Expose
     String description;
     String access;
     String group;

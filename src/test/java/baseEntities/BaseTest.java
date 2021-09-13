@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public class BaseTest {
 
@@ -30,16 +31,12 @@ public class BaseTest {
     public void setup() {
 
         clearBrowserCookies();
+        clearBrowserLocalStorage();
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
         Configuration.headless = false;
         Configuration.pageLoadTimeout = 15000;
         //Configuration.fastSetValue = false;
-    }
-
-    @AfterClass
-    public void tearDown() {
-
     }
 }

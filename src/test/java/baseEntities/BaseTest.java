@@ -4,8 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
 
@@ -21,7 +21,7 @@ public class BaseTest {
         org.apache.log4j.BasicConfigurator.configure();
     }
 
-    @BeforeTest
+    @BeforeClass
     public void setup() {
 
         Configuration.baseUrl = ReadProperties.getInstance().getURL();

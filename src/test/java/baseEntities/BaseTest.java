@@ -31,7 +31,6 @@ public class BaseTest {
     public void setup() {
 
         clearBrowserCookies();
-        clearBrowserLocalStorage();
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;

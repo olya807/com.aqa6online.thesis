@@ -29,7 +29,6 @@ public class ProjectsPage extends BasePage {
     }
 
     public ProjectCreatePage createProjectButtonClick() {
-
         getCreateProjectButton().click();
         return new ProjectCreatePage(false, UiEndpoints.CREATE_PROJECT);
     }

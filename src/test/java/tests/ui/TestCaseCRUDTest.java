@@ -7,6 +7,7 @@ import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import models.ui.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CasePage;
 import pages.LoginPage;
@@ -14,6 +15,8 @@ import pages.ProjectPage;
 import pages.ProjectsPage;
 
 import java.util.Locale;
+
+import static com.codeborne.selenide.Condition.visible;
 
 public class TestCaseCRUDTest extends BaseTest {
 
@@ -62,6 +65,7 @@ public class TestCaseCRUDTest extends BaseTest {
 
         projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
     }
+//divide into logical steps
 
     @Test
     @Description("Create test case")
@@ -72,7 +76,7 @@ public class TestCaseCRUDTest extends BaseTest {
                 .fillCaseForm(testCase)
                 .clickSaveButton()
                 .alertMessageCaseCreated()
-                .shouldBe(Condition.visible)
+                .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was created successfully!"));
 
         projectPage
@@ -81,22 +85,21 @@ public class TestCaseCRUDTest extends BaseTest {
                 .updateCase(testCase2)
                 .clickSaveButton()
                 .alertMessageCaseEdited()
-                .shouldBe(Condition.visible)
+                .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was edited successfully!"));
-
         projectPage
                 .getTestCaseHeader(randomTestCaseName, randomProjectCode)
                 .clickDeleteButton(randomProjectCode)
                 .clickDeleteConfirmationButton(randomProjectCode)
                 .alertMessageCaseDeleted()
-                .shouldBe(Condition.visible);
+                .shouldBe(visible);//добавить проверку по тексту
 
         projectPage
                 .clickSettingsButton(randomProjectCode)
                 .clickDeleteProjectButton(randomProjectCode)
                 .clickDeleteConfirmationButton(randomProjectCode)
-                .noProjectMessage()
-                .shouldBe(Condition.visible)
-                .shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
+                .noProjectMessage();
+                //.shouldBe(Condition.not(visible))
+                //.shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
     }
 }

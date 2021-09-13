@@ -4,8 +4,7 @@ import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
-import org.openqa.selenium.By;
-import wrappers.Button;
+import elements.Button;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -80,22 +79,27 @@ public class ProjectPage extends BasePage {
         getSaveSuiteButton().click();
         return this;
     }
+
     public ProjectPage getTestCaseHeader(String testCaseTitle,String projectCode) {
         $x(String.format("//div[@class='cases-container']//div[@class='case-row-title' and text() ='%s']", testCaseTitle)).click();
         return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
     }
+
     public ProjectPage clickDeleteButton(String projectCode){
         new Button(" Delete").click();
         return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
     }
+
     public ProjectPage clickDeleteConfirmationButton(String projectCode){
         new Button("Delete").click();
         return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
     }
+
     public CasePage clickEditButton(String projectCode){
         new Button(" Edit").click();
         return new CasePage(false,String.format(UiEndpoints.CASE_EDIT,projectCode));
     }
+
     public ProjectSettingsPage clickSettingsButton(String projectCode){
         $x("//li[@class='submenu-item ']/a[@title='Settings']").click();
         return new ProjectSettingsPage(false,String.format(UiEndpoints.PROJECT_SETTINGS,projectCode));
@@ -104,17 +108,26 @@ public class ProjectPage extends BasePage {
     public SelenideElement alertMessageCaseCreated() {
         return $x("//span[@class='alert-message' and text()='Test case was created successfully!']");
     }
+
     public SelenideElement alertMessageCaseEdited() {
         return $x("//span[@class='alert-message' and text()='Test case was edited successfully!']");
     }
+
     public SelenideElement alertMessageCaseDeleted() {
         return $x("//span[@class='alert-message']");
     }
+
     public SelenideElement noProjectMessage(){
         return $x("//*[@class='no-project mt-4']");
     }
+
     public ProjectPage clickProjectHeader(String projectCode){
         $x("//a[@class='defect-title' and text()='%s']").click();
         return this;
     }
+
+    public SelenideElement controlFeedbackMessage(){
+      return $x("//div[@class = 'form-control-feedback' and contains(text(),' at least 2 characters.')]");
+    }
+
 }

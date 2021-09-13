@@ -5,11 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
 import models.ui.TestCase;
-import org.apache.commons.lang.RandomStringUtils;
-import wrappers.Button;
-import wrappers.Dropdown;
-import wrappers.EditableInput;
-import wrappers.Input;
+import elements.Button;
+import elements.Dropdown;
+import elements.EditableInput;
+import elements.Input;
 
 import static com.codeborne.selenide.Selenide.*;
 

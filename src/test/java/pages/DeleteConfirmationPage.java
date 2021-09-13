@@ -1,10 +1,9 @@
 package pages;
 
 import baseEntities.BasePage;
-import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
-import wrappers.Button;
+import elements.Button;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;

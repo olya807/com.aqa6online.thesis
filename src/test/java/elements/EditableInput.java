@@ -1,9 +1,8 @@
-package wrappers;
+package elements;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class EditableInput {
@@ -21,18 +20,16 @@ public class EditableInput {
 
     public void insert(String text) {
         setFocus();
-        $x(String.format(locator, label)).shouldBe(visible).setValue(text);
+        $x(String.format(locator, label)).shouldBe(Condition.visible).setValue(text);
     }
 
     public EditableInput clear() {
         SelenideElement element = $x(String.format(locator, label));
         element.click();
-        element.shouldBe(visible).clear();
+        element.shouldBe(Condition.visible)
+                .shouldBe(Condition.enabled)
+                .clear();
         return this;
-    }
-
-    public void shouldHave(String text) {
-        $x(String.format(locator, label)).shouldHave(Condition.exactText(text));
     }
 }
 

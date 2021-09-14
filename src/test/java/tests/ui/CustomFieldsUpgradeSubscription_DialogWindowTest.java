@@ -7,11 +7,12 @@ import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import pages.workspace.WorkspacePage;
+import pages.UpgradeSubscriptionPage;
+import pages.workspace.MembersPage;
 
 public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
 
-    WorkspacePage workspacePage;
+    UpgradeSubscriptionPage upgradeSubscriptionPage;
 
     @Test
     @Description("Click 'CustomFields' menu and check 'Upgrade your subscription' dialog window")
@@ -24,14 +25,16 @@ public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
                 .setPassword(ReadProperties.getInstance().getPassword())
                 .successLoginBtnClick();
 
-        workspacePage = new WorkspacePage(true, UiEndpoints.WORKSPACE)
+        upgradeSubscriptionPage = new MembersPage(true, UiEndpoints.WORKSPACE_MEMBERS)
                 .clickCustomFieldsMenuItemUpgrade();
 
-        workspacePage
+        upgradeSubscriptionPage
                 .getUpgradeSubscriptionHeader()
                 .shouldBe(Condition.visible)
                 .shouldHave(Condition.matchText(upgradeText));
-        workspacePage.getUpgradeSubscriptionBtn()
+
+        upgradeSubscriptionPage
+                .getUpgradeSubscriptionBtn()
                 .shouldBe(Condition.visible)
                 .shouldHave(Condition.exactText(upgradeText));
     }

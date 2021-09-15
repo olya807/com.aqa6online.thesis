@@ -5,8 +5,9 @@ import com.google.gson.GsonBuilder;
 
 public class BaseAdapter {
     public Gson gson;
-    public BaseAdapter(){
-gson = new GsonBuilder()
-        .excludeFieldsWithoutExposeAnnotation().create();
+
+    public BaseAdapter() {
+        gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation().create();
     }
 }

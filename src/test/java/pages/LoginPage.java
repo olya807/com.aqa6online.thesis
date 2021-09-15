@@ -46,17 +46,12 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage loginBtnClick() {
-        getLoginButton().click();
-        return this;
-    }
-
     public String credentialsDoNotMatch() {
         return getCredentialsDoNotMatchMessage().getText();
     }
 
     public ProjectsPage successLoginBtnClick() {
-        loginBtnClick();
+        getLoginButton().click();
         return new ProjectsPage(false, UiEndpoints.PROJECTS);
     }
 }

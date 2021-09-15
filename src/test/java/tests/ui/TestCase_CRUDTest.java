@@ -14,12 +14,12 @@ import pages.ProjectsPage;
 
 import static com.codeborne.selenide.Condition.visible;
 
-public class TestCaseCRUDTest extends BaseTest {
+public class TestCase_CRUDTest extends BaseTest {
 
     ProjectPage projectPage;
     ProjectsPage projectsPage;
-    String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+    final String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
+    final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
     @Test
     @Description("Create project with correct name")
@@ -36,7 +36,9 @@ public class TestCaseCRUDTest extends BaseTest {
                 .setProjectCode(randomProjectCode)
                 .clickCreateProjectSuccessBtn();
 
-        projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
+        projectPage
+                .getProjectNameHeader()
+                .shouldHave(Condition.exactText(randomProjectName));
     }
 
 
@@ -46,7 +48,7 @@ public class TestCaseCRUDTest extends BaseTest {
 
         CasePage casePage = new CasePage(true, String.format(UiEndpoints.CASE_CREATE, randomProjectCode));
         casePage
-                .fillCaseForm(testCase)
+                .fillCaseForm(testCaseBuilder)
                 .clickSaveButton()
                 .alertMessageCaseCreated()
                 .shouldBe(visible)
@@ -57,9 +59,9 @@ public class TestCaseCRUDTest extends BaseTest {
     @Description("Update test case")
     public void testCaseUpdateTest() {
         projectPage
-                .getTestCaseHeader(randomTestCaseName, randomProjectCode)
+                .getTestCaseHeader(testCaseBuilder.getTitle(), randomProjectCode)
                 .clickEditButton(randomProjectCode)
-                .updateCase(testCase2)
+                .updateCase(testCase2Builder)
                 .clickSaveButton()
                 .alertMessageCaseEdited()
                 .shouldBe(visible)
@@ -70,7 +72,7 @@ public class TestCaseCRUDTest extends BaseTest {
     @Description("Delete test case")
     public void testCaseDeleteTest() {
         projectPage
-                .getTestCaseHeader(randomTestCaseName, randomProjectCode)
+                .getTestCaseHeader(testCaseBuilder.getTitle(), randomProjectCode)
                 .clickDeleteButton(randomProjectCode)
                 .clickDeleteConfirmationButton(randomProjectCode)
                 .alertMessageCaseDeleted()

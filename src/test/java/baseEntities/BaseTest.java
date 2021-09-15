@@ -72,9 +72,9 @@ public class BaseTest {
         //Configuration.fastSetValue = false;
     }
 
-    /*@AfterClass
+    @AfterClass
     public void tearDown() {
 
         clearBrowserCookies();
-    }*/
+    }
 }

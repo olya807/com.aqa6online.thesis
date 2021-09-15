@@ -5,16 +5,12 @@ import com.codeborne.selenide.Condition;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
-import models.ui.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CasePage;
 import pages.LoginPage;
 import pages.ProjectPage;
 import pages.ProjectsPage;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.visible;
 
@@ -23,30 +19,7 @@ public class TestCaseCRUDTest extends BaseTest {
     ProjectPage projectPage;
     ProjectsPage projectsPage;
     String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
-    String randomTestCaseName = RandomStringUtils.randomAlphanumeric(15);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase(Locale.ROOT);
-    String updatedPreconds = RandomStringUtils.randomAlphanumeric(15);
-    TestCase testCase = TestCase.builder()
-            .title(randomTestCaseName)
-            .status("Actual")
-            .description(RandomStringUtils.randomAlphabetic(10))
-            .suite("Test cases without suite")
-            .severity("Critical")
-            .priority("High")
-            .type("Smoke")
-            .layer("Unit")
-            .isFlaky("No")
-            .milestone("Not set")
-            .behavior("Not set")
-            .automationStatus("Not automated")
-            .preconditions(RandomStringUtils.randomAlphabetic(50))
-            .postconditions(RandomStringUtils.randomAlphanumeric(50))
-            .build();
-
-    TestCase testCase2 = TestCase.builder()
-            .layer("API")
-            .preconditions(updatedPreconds)
-            .build();
+    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
     @Test
     @Description("Create project with correct name")
@@ -65,11 +38,11 @@ public class TestCaseCRUDTest extends BaseTest {
 
         projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
     }
-//divide into logical steps
 
-    @Test
+
+    @Test(dependsOnMethods = "createProjectTest")
     @Description("Create test case")
-    public void testCaseCRUDTest() throws InterruptedException {
+    public void testCaseCreateTest() {
 
         CasePage casePage = new CasePage(true, String.format(UiEndpoints.CASE_CREATE, randomProjectCode));
         casePage
@@ -78,7 +51,11 @@ public class TestCaseCRUDTest extends BaseTest {
                 .alertMessageCaseCreated()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was created successfully!"));
+    }
 
+    @Test(dependsOnMethods = "testCaseCreateTest")
+    @Description("Update test case")
+    public void testCaseUpdateTest() {
         projectPage
                 .getTestCaseHeader(randomTestCaseName, randomProjectCode)
                 .clickEditButton(randomProjectCode)
@@ -87,19 +64,31 @@ public class TestCaseCRUDTest extends BaseTest {
                 .alertMessageCaseEdited()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was edited successfully!"));
+    }
+
+    @Test(dependsOnMethods = "testCaseUpdateTest")
+    @Description("Delete test case")
+    public void testCaseDeleteTest() {
         projectPage
                 .getTestCaseHeader(randomTestCaseName, randomProjectCode)
                 .clickDeleteButton(randomProjectCode)
                 .clickDeleteConfirmationButton(randomProjectCode)
                 .alertMessageCaseDeleted()
-                .shouldBe(visible);//добавить проверку по тексту
+                .shouldBe(visible)
+                .shouldHave(Condition.text(String.format("Test case ['%s'-'1'] was successfully deleted", randomProjectCode)));
+    }
+
+    @Test(dependsOnMethods = "testCaseDeleteTest")
+    @Description("Delete project")
+    public void projectDeleteTest() {
 
         projectPage
                 .clickSettingsButton(randomProjectCode)
                 .clickDeleteProjectButton(randomProjectCode)
                 .clickDeleteConfirmationButton(randomProjectCode)
-                .noProjectMessage();
-                //.shouldBe(Condition.not(visible))
-                //.shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
+                .fillProjectSearchInput(randomProjectName)
+                .noProjectMessage()
+                .shouldBe(Condition.not(visible))
+                .shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
     }
 }

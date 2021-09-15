@@ -12,7 +12,7 @@ import pages.ProjectPage;
 import pages.ProjectsPage;
 
 public class NegativeTests extends BaseTest {
-            ProjectPage projectPage;
+        ProjectPage projectPage;
         ProjectsPage projectsPage;
 
         @Test

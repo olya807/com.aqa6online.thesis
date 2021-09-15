@@ -19,8 +19,8 @@ public class DeleteConfirmationPage extends BasePage {
         open(ReadProperties.getInstance().getURL() + endpoint);
     }
 
-    public ProjectPage clickDeleteConfirmationButton(String projectCode){
+    public ProjectsPage clickDeleteConfirmationButton(String projectCode){
         new Button(" Delete project").click();
-        return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
+        return new ProjectsPage(false, String.format(UiEndpoints.PROJECTS));
     }
 }

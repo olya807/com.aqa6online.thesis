@@ -3,6 +3,7 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import elements.Input;
 import endpoints.UiEndpoints;
 import elements.Button;
 
@@ -100,6 +101,7 @@ public class ProjectPage extends BasePage {
         return new CasePage(false,String.format(UiEndpoints.CASE_EDIT,projectCode));
     }
 
+
     public ProjectSettingsPage clickSettingsButton(String projectCode){
         $x("//li[@class='submenu-item ']/a[@title='Settings']").click();
         return new ProjectSettingsPage(false,String.format(UiEndpoints.PROJECT_SETTINGS,projectCode));
@@ -114,12 +116,10 @@ public class ProjectPage extends BasePage {
     }
 
     public SelenideElement alertMessageCaseDeleted() {
-        return $x("//span[@class='alert-message']");
+        return $x("//span[@class='alert-message' and contains (text(), 'was successfully deleted')]");
     }
 
-    public SelenideElement noProjectMessage(){
-        return $x("//*[@class='no-project mt-4']");
-    }
+
 
     public ProjectPage clickProjectHeader(String projectCode){
         $x("//a[@class='defect-title' and text()='%s']").click();

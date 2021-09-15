@@ -13,26 +13,28 @@ public class TestCase {
     String title;
     @Expose
     String description;
-    @Expose(serialize = false)
+    @Expose
     String preconditions;
-    @Expose(serialize = false)
+    @Expose
     String postconditions;
-    @Expose(serialize = false)
+    @Expose
     String severity;
-    @Expose(serialize = false)
+    @Expose
     String priority;
-    @Expose(serialize = false)
+    @Expose
     String type;
-    @Expose(serialize = false)
+    @Expose
     String behavior;
-    @Expose(serialize = false)
+    @Expose
     String automationStatus;
-    @Expose(serialize = false)
+    @Expose
     String status;
-    @Expose(serialize = false)
+    @Expose
     String milestone;
-    @Expose(serialize = false)
+    @Expose
     String suite;
+    @Expose
     String layer;
+    @Expose
     String isFlaky;
 }

@@ -72,6 +72,5 @@ public class BaseTest {
     public void tearDown() {
 
         clearBrowserCookies();
-        clearBrowserLocalStorage();
     }
 }

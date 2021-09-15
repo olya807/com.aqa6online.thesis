@@ -2,8 +2,11 @@ package pages;
 
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -17,6 +20,15 @@ public class LoginPage extends BasePage {
     @Override
     protected void openPage(String endpoint) {
         open(ReadProperties.getInstance().getURL() + endpoint);
+
+        try {
+            Alert alert = WebDriverRunner.getWebDriver().switchTo().alert();
+            String alertText = alert.getText();
+            System.out.println("Alert data: " + alertText);
+            alert.accept();
+        } catch (NoAlertPresentException e) {
+            e.printStackTrace();
+        }
     }
 
     private SelenideElement getEmailField() {

@@ -19,7 +19,8 @@ public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
-    @Test
+    @Link(name = "flows/develop/", type = "testLink")
+    @Test(description = "Boundary test with 255 symbols allowed")
     @Description("Create project with name of 255 symbols")
     public void createProjectWithCorrectNameLengthTest() {
 

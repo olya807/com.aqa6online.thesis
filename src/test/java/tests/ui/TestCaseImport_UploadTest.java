@@ -22,7 +22,7 @@ public class TestCaseImport_UploadTest extends BaseTest {
     final String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
     final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
-    @Test
+    @Test(description = "Upload test: create project")
     @Description("Create project with correct name")
     public void createProjectTest() {
 
@@ -40,7 +40,10 @@ public class TestCaseImport_UploadTest extends BaseTest {
         projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
     }
 
-    @Test(dependsOnMethods = "createProjectTest")
+    @Test(
+            dependsOnMethods = "createProjectTest",
+            description = "Upload test: upload test case file"
+    )
     @Description("Upload test case file")
     public void uploadTestCaseFileTest() {
 

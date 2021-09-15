@@ -6,8 +6,6 @@ import core.ReadProperties;
 import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CasePage;
@@ -17,14 +15,13 @@ import pages.ProjectsPage;
 
 import java.io.File;
 import java.util.Locale;
-import java.util.Objects;
 
 public class TestCaseImport_UploadTest extends BaseTest {
 
     ProjectPage projectPage;
     ProjectsPage projectsPage;
     String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase(Locale.ROOT);
+    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
     @Test
     @Description("Create project with correct name")

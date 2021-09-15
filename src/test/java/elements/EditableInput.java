@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class EditableInput {
     String label;
     String locator = "//*[contains(text(),'%s')]/parent::div/descendant::p";
-    String parent = "//*[contains(text(),'%s')]/following-sibling::input/preceding-sibling::div";
+    String parent = "//div[@id='undefinedGroup'][label[text()='%s']]/input";
 
     public EditableInput(String label) {
         this.label = label;

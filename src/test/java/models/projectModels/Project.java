@@ -1,4 +1,4 @@
-package models.api.projectModels;
+package models.projectModels;
 
 import com.google.gson.annotations.Expose;
 import lombok.Builder;

@@ -6,6 +6,7 @@ import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import models.ui.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
@@ -58,6 +59,11 @@ public class BaseTest {
     public void setup() {
 
         clearBrowserCookies();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Configuration.baseUrl = ReadProperties.getInstance().getURL();
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
@@ -65,4 +71,10 @@ public class BaseTest {
         Configuration.pageLoadTimeout = 60000;
         //Configuration.fastSetValue = false;
     }
+
+    /*@AfterClass
+    public void tearDown() {
+
+        clearBrowserCookies();
+    }*/
 }

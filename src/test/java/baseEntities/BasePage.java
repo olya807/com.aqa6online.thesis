@@ -1,5 +1,8 @@
 package baseEntities;
 
+import models.api.projectModels.Project;
+
+
 public abstract class BasePage {
 
     protected abstract void openPage(String endpoint);

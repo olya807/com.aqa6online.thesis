@@ -3,10 +3,10 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import elements.Input;
 import endpoints.UiEndpoints;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ProjectsPage extends BasePage {
 
@@ -34,4 +34,17 @@ public class ProjectsPage extends BasePage {
         getCreateProjectButton().click();
         return new ProjectCreatePage(false, UiEndpoints.CREATE_PROJECT);
     }
+
+    public ProjectsPage fillProjectSearchInput(String projectName){
+        projectSearchField().sendKeys(projectName);
+        return new ProjectsPage(false,String.format(UiEndpoints.PROJECTS));
+    }
+    public SelenideElement noProjectMessage(){
+        return $x("//*[@class='no-project mt-4']");
+    }
+
+    public SelenideElement projectSearchField(){
+        return $x("//input[@placeholder='Search for projects']");
+    }
+
 }

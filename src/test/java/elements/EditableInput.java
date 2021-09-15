@@ -19,16 +19,14 @@ public class EditableInput {
     }
 
     public void insert(String text) {
-        setFocus();
-        $x(String.format(locator, label)).shouldBe(Condition.visible).setValue(text);
+        $x(String.format(parent, label)).click();
+        $x(String.format(parent, label)).sendKeys(text);
     }
 
     public EditableInput clear() {
-        SelenideElement element = $x(String.format(locator, label));
+        SelenideElement element = $x(String.format(parent, label));
         element.click();
-        element.shouldBe(Condition.visible)
-                .shouldBe(Condition.enabled)
-                .clear();
+        element.clear();
         return this;
     }
 }

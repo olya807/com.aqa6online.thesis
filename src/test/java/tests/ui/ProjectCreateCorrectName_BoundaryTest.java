@@ -5,6 +5,7 @@ import com.codeborne.selenide.Condition;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

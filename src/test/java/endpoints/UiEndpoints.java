@@ -11,5 +11,5 @@ public interface UiEndpoints {
     String CASE_IMPORT = "case/%s/import";
     String CASE_CREATE = "case/%s/create";
     String CASE_EDIT = "case/%s/edit/1";
-    String WORKSPACE = "workspace";
+    String WORKSPACE_MEMBERS = "workspace";
 }

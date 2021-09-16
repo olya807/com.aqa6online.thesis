@@ -1,9 +1,9 @@
 package elements;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class EditableInput {
 
@@ -17,13 +17,13 @@ public class EditableInput {
     public void insert(String text) {
         SelenideElement inputField = $x(String.format(this.inputField, label));
         //WebDriverRunner.driver().executeJavaScript("arguments[0].setAttribute('value', arguments[1])", inputField, text);
-        WebDriverRunner.driver().executeJavaScript("arguments[0].innerHTML=arguments[1]", inputField, text);
+        executeJavaScript("arguments[0].innerHTML=arguments[1]", inputField, text);
     }
 
     public EditableInput clear() {
         SelenideElement inputField = $x(String.format(this.inputField, label));
-        WebDriverRunner.driver().executeJavaScript("arguments[0].removeAttribute('data-placeholder')", inputField);
-        WebDriverRunner.driver().executeJavaScript("arguments[0].setAttribute('value', arguments[1])", inputField, "");
+        executeJavaScript("arguments[0].removeAttribute('data-placeholder')", inputField);
+        executeJavaScript("arguments[0].setAttribute('value', arguments[1])", inputField, "");
         return this;
     }
 }

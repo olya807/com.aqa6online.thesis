@@ -2,19 +2,13 @@ package tests.ui;
 
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
-import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
-import pages.ProjectCreatePage;
-import pages.ProjectsPage;
 import steps.CreateProjectStep;
 import steps.LoginStep;
 
 public class ProjectCreateIncorrectName_BoundaryTest extends BaseTest {
-
-    ProjectsPage projectsPage;
-    ProjectCreatePage projectCreatePage;
 
     @Test(description = "Boundary test with 256 symbols NOT allowed")
     @Description("Create project with name of more than 255 symbols")

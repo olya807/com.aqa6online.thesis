@@ -2,7 +2,7 @@ package tests.ui;
 
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
-import models.ui.TestCase;
+import models.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
 import steps.CreateCaseStep;

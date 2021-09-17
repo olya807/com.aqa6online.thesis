@@ -37,7 +37,6 @@ public class TestCaseImport_Upload_XLSTest extends BaseTest {
 
         File file = new File("src/test/java/files/squashtm.xls");
 
-
         CasePage casePage = new CasePage(true, String.format(UiEndpoints.CASE_IMPORT, randomProjectCode));
         casePage
                 .getFileUploadField()

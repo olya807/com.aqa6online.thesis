@@ -18,7 +18,6 @@ import static com.codeborne.selenide.Condition.visible;
 public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
 
     Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-    ProjectPage projectPage;
 
 
     @Link(name = "flows/develop/", type = "testLink")

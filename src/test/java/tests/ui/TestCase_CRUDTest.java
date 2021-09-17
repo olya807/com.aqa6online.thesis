@@ -14,12 +14,9 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class TestCase_CRUDTest extends BaseTest {
 
-    ProjectPage projectPage;
-    ProjectsPage projectsPage;
+
     final String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
     final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
-    String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
     @Test
     @Description("Create project with correct name")
@@ -39,7 +36,7 @@ public class TestCase_CRUDTest extends BaseTest {
     public void testCaseCreateTest() {
 
         new CreateCaseStep()
-                .createCase(randomProjectCode, testCase)
+                .createCase(randomProjectCode, testCaseBuilder)
                 .alertMessageCaseCreated()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was created successfully!"));
@@ -49,7 +46,8 @@ public class TestCase_CRUDTest extends BaseTest {
     @Description("Update test case")
     public void testCaseUpdateTest() {
 
-        new UpdateCaseStep().updateCase(randomProjectCode, randomTestCaseName, testCase2)
+        new UpdateCaseStep()
+                .updateCase(randomProjectCode, testCaseBuilder.getTitle(), testCase2Builder)
                 .alertMessageCaseEdited()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was edited successfully!"));
@@ -60,7 +58,7 @@ public class TestCase_CRUDTest extends BaseTest {
     public void testCaseDeleteTest() {
 
         new DeleteCaseStep()
-                .deleteCase(randomProjectCode, randomTestCaseName)
+                .deleteCase(randomProjectCode, testCaseBuilder.getTitle())
                 .alertMessageCaseDeleted()
                 .shouldBe(visible)
                 .shouldHave(Condition.text(String.format("Test case ['%s'-'1'] was successfully deleted", randomProjectCode)));

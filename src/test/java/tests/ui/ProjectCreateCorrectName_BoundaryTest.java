@@ -2,23 +2,24 @@ package tests.ui;
 
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
-import core.ReadProperties;
-import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import io.qameta.allure.Link;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 import pages.ProjectPage;
-import pages.ProjectsPage;
+import steps.LoginStep;
+import steps.CreateProjectStep;
+import steps.DeleteProjectStep;
+
+import static com.codeborne.selenide.Condition.visible;
 
 public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
 
     Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     ProjectPage projectPage;
-    ProjectsPage projectsPage;
+
 
     @Link(name = "flows/develop/", type = "testLink")
     @Test(description = "Boundary test with 255 symbols allowed")
@@ -26,22 +27,28 @@ public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
     public void createProjectWithCorrectNameLengthTest() {
 
         String randomProjectName = RandomStringUtils.randomAlphanumeric(255);
+        String randomProjectCode = RandomStringUtils.randomAlphanumeric(6);
 
-        projectsPage = new LoginPage(true, UiEndpoints.LOGIN)
-                .setEmail(ReadProperties.getInstance().getUsername())
-                .setPassword(ReadProperties.getInstance().getPassword())
-                .successLoginBtnClick();
+        new LoginStep()
+                .correctLogin();
 
-        projectPage = projectsPage
-                .createProjectButtonClick()
-                .setProjectName(randomProjectName)
-                .clickCreateProjectSuccessBtn();
+        new CreateProjectStep()
+                .createProject(randomProjectName,randomProjectCode)
+                .getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
 
         LOGGER.error(String.format(
-                "Expected Project name is '%s' and was '%s'",
-                randomProjectName,
-                projectPage.getProjectNameHeader().getText()
-        ));
-        projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
+                "Expected Project name is '%s'",
+                randomProjectName));
+
+        new DeleteProjectStep()
+                .deleteProject(randomProjectCode)
+                .fillProjectSearchInput(randomProjectName)
+                .noProjectMessage()
+                .shouldBe(Condition.not(visible))
+                .shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
     }
-}
+
+
+
+    }
+

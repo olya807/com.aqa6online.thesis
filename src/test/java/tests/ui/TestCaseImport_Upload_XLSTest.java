@@ -9,17 +9,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CasePage;
 import pages.ProjectPage;
-import steps.LoginStep;
 import steps.CreateProjectStep;
+import steps.LoginStep;
 
 import java.io.File;
 
-public class TestCaseImport_UploadTest extends BaseTest {
+public class TestCaseImport_Upload_XLSTest extends BaseTest {
 
-   final String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-   final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+    String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
+    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
-    @Test(description = "Upload test: create project")
+    @Test
     @Description("Create project with correct name")
     public void createProjectTest() {
 
@@ -31,29 +31,24 @@ public class TestCaseImport_UploadTest extends BaseTest {
     }
 
 
-    @Test(
-            dependsOnMethods = "createProjectTest",
-            description = "Upload test: upload test case file"
-    )
+    @Test
     @Description("Upload test case file")
     public void uploadTestCaseFileTest() {
 
-        File file = new File("src/test/java/files/testrail.csv");
+        File file = new File("src/test/java/files/squashtm.xls");
+
 
         CasePage casePage = new CasePage(true, String.format(UiEndpoints.CASE_IMPORT, randomProjectCode));
         casePage
                 .getFileUploadField()
                 .uploadFile(file);
 
-        boolean isFileUploaded = casePage
-                .getFileUploadFieldValue()
-                .contains("testrail.csv");
-
-        casePage
+               casePage
+                .selectUploadSourceType()
                 .submitBtnClick()
+                .checkUploadingResults(randomProjectCode)
                 .getAlertMessage()
-                .shouldHave(Condition.exactText("0 suites and 1 cases were successfully imported!"));
+                .shouldHave(Condition.exactText("3 suites and 2 cases were successfully imported!"));
 
-        Assert.assertTrue(isFileUploaded);
     }
 }

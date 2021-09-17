@@ -16,7 +16,6 @@ public class EditableInput {
 
     public void insert(String text) {
         SelenideElement inputField = $x(String.format(this.inputField, label));
-        //WebDriverRunner.driver().executeJavaScript("arguments[0].setAttribute('value', arguments[1])", inputField, text);
         executeJavaScript("arguments[0].innerHTML=arguments[1]", inputField, text);
     }
 

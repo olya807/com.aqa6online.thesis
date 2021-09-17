@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
 
@@ -71,5 +72,6 @@ public class BaseTest {
     public void tearDown() {
 
         clearBrowserCookies();
+        closeWebDriver();
     }
 }

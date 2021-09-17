@@ -1,11 +1,13 @@
 package pages;
 
 import baseEntities.BasePage;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import elements.Input;
 import endpoints.UiEndpoints;
 import elements.Button;
+import endpoints.UiEndpoints;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -129,4 +131,14 @@ public class ProjectPage extends BasePage {
         return $x("//div[@class = 'form-control-feedback' and contains(text(),' at least 2 characters.')]");
     }
 
+    private SelenideElement uploadedExample() {
+        return $x("//a[contains(text(),'Example')]");
+    }
+
+    public ProjectPage checkUploadingResults(String projectCode) {
+        uploadedExample()
+                .shouldBe(Condition.visible)
+                .shouldHave(Condition.exactText("Example"));
+        return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
+    }
 }

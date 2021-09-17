@@ -1,6 +1,7 @@
 package pages;
 
 import baseEntities.BasePage;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
@@ -80,5 +81,12 @@ public class CasePage extends BasePage {
         return new ProjectPage(false, UiEndpoints.PROJECT);
     }
 
-
+    public CasePage selectUploadSourceType(){
+        SelenideElement selectButton = $x("//button[@data-id = 'selectSource']");
+        SelenideElement selectOption = $x("//span[contains(text(), 'SquashTM')]/ancestor::a");
+        selectButton.shouldBe(Condition.visible);
+        executeJavaScript("arguments[0].click();", selectButton);
+        executeJavaScript("arguments[0].click();", selectOption);
+        return this;
+    }
 }

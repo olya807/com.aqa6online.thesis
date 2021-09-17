@@ -6,10 +6,12 @@ import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
 import models.ui.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
     protected String randomTestCaseName = RandomStringUtils.randomAlphanumeric(15);
@@ -65,5 +67,10 @@ public class BaseTest {
         Configuration.headless = false;
         Configuration.pageLoadTimeout = 15000;
         //Configuration.fastSetValue = false;
+    }
+
+    @AfterClass
+    public void tearDown(){
+        closeWebDriver();
     }
 }

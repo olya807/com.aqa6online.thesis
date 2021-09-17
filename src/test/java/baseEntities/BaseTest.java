@@ -29,7 +29,7 @@ public class BaseTest {
         org.apache.log4j.BasicConfigurator.configure();
     }
 
-    @BeforeSuite
+    @BeforeClass
     public void prepareData() {
 
         testCase = TestCase.builder()

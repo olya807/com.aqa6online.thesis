@@ -27,6 +27,9 @@ public class CasePage extends BasePage {
         return $("#file");
     }
 
+    public SelenideElement getTooLongTitleMessage() {
+        return $(".form-control-feedback");
+    }
 
     private SelenideElement getSubmitBtn() {
         return $("[type='submit']");
@@ -52,7 +55,15 @@ public class CasePage extends BasePage {
         new EditableInput("Pre-conditions").clear().insert(testCase.getPreconditions());
         return this;
 
-    } public CasePage updateCase(TestCase testCase) {
+    }
+
+    public CasePage fillCaseFormWithTitleOnly(TestCase testCase) {
+        new Input("Title").clear().sendValue(testCase.getTitle());
+        return this;
+
+    }
+
+    public CasePage updateCase(TestCase testCase) {
         new Dropdown("Layer").setDropdown(testCase.getLayer());
         new EditableInput("Pre-conditions").clear().insert(testCase.getPreconditions());
         return this;

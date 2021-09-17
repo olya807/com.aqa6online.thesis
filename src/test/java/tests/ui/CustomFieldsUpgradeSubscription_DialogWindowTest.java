@@ -2,13 +2,12 @@ package tests.ui;
 
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
-import core.ReadProperties;
 import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 import pages.UpgradeSubscriptionPage;
 import pages.workspace.MembersPage;
+import steps.LoginStep;
 
 public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
 
@@ -20,10 +19,8 @@ public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
 
         String upgradeText = "Upgrade your subscription";
 
-        new LoginPage(true, UiEndpoints.LOGIN)
-                .setEmail(ReadProperties.getInstance().getUsername())
-                .setPassword(ReadProperties.getInstance().getPassword())
-                .successLoginBtnClick();
+        new LoginStep()
+                .correctLogin();
 
         upgradeSubscriptionPage = new MembersPage(true, UiEndpoints.WORKSPACE_MEMBERS)
                 .clickCustomFieldsMenuItemUpgrade();

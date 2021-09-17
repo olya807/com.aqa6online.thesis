@@ -8,19 +8,19 @@ import static com.codeborne.selenide.Selenide.$x;
 public class EditableInput {
     String label;
     String locator = "//*[contains(text(),'%s')]/parent::div/descendant::p";
-    String parent = "//*[contains(text(),'%s')]/following-sibling::input/preceding-sibling::div";
+    String parent = "//*[contains(text(),'%s')]/following-sibling::input";
 
     public EditableInput(String label) {
         this.label = label;
     }
 
-    public void setFocus() {
+    public void clickOnVisibleField() {
         $x(String.format(parent, label)).click();
     }
 
     public void insert(String text) {
-        setFocus();
-        $x(String.format(locator, label)).shouldBe(Condition.visible).setValue(text);
+        clickOnVisibleField();
+        $x(String.format(parent, label)).setValue(text);
     }
 
     public EditableInput clear() {

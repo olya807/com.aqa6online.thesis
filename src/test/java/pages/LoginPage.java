@@ -31,7 +31,7 @@ public class LoginPage extends BasePage {
         return $("#btnLogin");
     }
 
-    private SelenideElement getCredentialsDoNotMatchMessage() {
+    public SelenideElement getCredentialsDoNotMatchMessage() {
         return $(".form-control-feedback");
     }
 

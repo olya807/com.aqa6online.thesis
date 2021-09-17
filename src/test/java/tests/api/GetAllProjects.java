@@ -2,8 +2,8 @@ package tests.api;
 
 import adapters.ProjectsAdapter;
 import baseEntities.BaseApiTest;
-import models.api.projectModels.GetResponseResult;
-import models.api.projectModels.PostResponseResult;
+import models.projectModels.GetResponseResult;
+import models.projectModels.PostResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

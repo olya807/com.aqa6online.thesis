@@ -1,4 +1,4 @@
-package models.api.suitesModels;
+package models.projectModels;
 
 import com.google.gson.annotations.Expose;
 import lombok.Builder;
@@ -6,8 +6,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class SuiteResult {
+public class Result{
     @Expose
-   int id;
-
+    String code;
+    @Expose
+    String title;
 }

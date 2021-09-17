@@ -5,7 +5,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
 import endpoints.UiEndpoints;
-import models.ui.TestCase;
+import models.TestCase;
 import elements.Button;
 import elements.Dropdown;
 import elements.EditableInput;

@@ -16,7 +16,7 @@ public class ProjectCreateIncorrectName_BoundaryTest extends BaseTest {
     ProjectsPage projectsPage;
     ProjectCreatePage projectCreatePage;
 
-    @Test
+    @Test(description = "Boundary test with 256 symbols NOT allowed")
     @Description("Create project with name of more than 255 symbols")
     public void createProjectWithIncorrectNameLengthTest() {
 

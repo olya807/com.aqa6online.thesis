@@ -4,6 +4,8 @@ import baseEntities.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
+import elements.Input;
+import endpoints.UiEndpoints;
 import elements.Button;
 import endpoints.UiEndpoints;
 

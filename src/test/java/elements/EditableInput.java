@@ -1,34 +1,28 @@
 package elements;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class EditableInput {
+
     String label;
-    String locator = "//*[contains(text(),'%s')]/parent::div/descendant::p";
-    String parent = "//*[contains(text(),'%s')]/following-sibling::input";
+    String inputField = "//div[@id='undefinedGroup'][label[text()='%s']]//p";
 
     public EditableInput(String label) {
         this.label = label;
     }
 
-    public void clickOnVisibleField() {
-        $x(String.format(parent, label)).click();
-    }
-
     public void insert(String text) {
-        clickOnVisibleField();
-        $x(String.format(parent, label)).setValue(text);
+        SelenideElement inputField = $x(String.format(this.inputField, label));
+        executeJavaScript("arguments[0].innerHTML=arguments[1]", inputField, text);
     }
 
     public EditableInput clear() {
-        SelenideElement element = $x(String.format(locator, label));
-        element.click();
-        element.shouldBe(Condition.visible)
-                .shouldBe(Condition.enabled)
-                .clear();
+        SelenideElement inputField = $x(String.format(this.inputField, label));
+        executeJavaScript("arguments[0].removeAttribute('data-placeholder')", inputField);
+        executeJavaScript("arguments[0].setAttribute('value', arguments[1])", inputField, "");
         return this;
     }
 }

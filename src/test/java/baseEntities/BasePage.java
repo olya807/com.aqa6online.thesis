@@ -1,7 +1,5 @@
 package baseEntities;
 
-import models.api.projectModels.Project;
-
 
 public abstract class BasePage {
 

@@ -3,6 +3,7 @@ package tests.ui;
 import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,8 @@ public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
     ProjectPage projectPage;
 
 
-    @Test
+    @Link(name = "flows/develop/", type = "testLink")
+    @Test(description = "Boundary test with 255 symbols allowed")
     @Description("Create project with name of 255 symbols")
     public void createProjectWithCorrectNameLengthTest() {
 

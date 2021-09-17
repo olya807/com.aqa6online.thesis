@@ -12,8 +12,12 @@ import steps.*;
 
 import static com.codeborne.selenide.Condition.visible;
 
-public class TestCaseCRUDTest extends BaseTest {
+public class TestCase_CRUDTest extends BaseTest {
 
+    ProjectPage projectPage;
+    ProjectsPage projectsPage;
+    final String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
+    final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
     String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
     String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 

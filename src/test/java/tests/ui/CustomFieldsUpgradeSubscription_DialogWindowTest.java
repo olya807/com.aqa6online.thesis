@@ -4,6 +4,7 @@ import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import endpoints.UiEndpoints;
 import io.qameta.allure.Description;
+import io.qameta.allure.Link;
 import org.testng.annotations.Test;
 import pages.UpgradeSubscriptionPage;
 import pages.workspace.MembersPage;
@@ -13,7 +14,8 @@ public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
 
     UpgradeSubscriptionPage upgradeSubscriptionPage;
 
-    @Test
+    @Link("https://example.com/")
+    @Test(description = "Dialog window check")
     @Description("Click 'CustomFields' menu and check 'Upgrade your subscription' dialog window")
     public void checkCreateProjectAlert() {
 

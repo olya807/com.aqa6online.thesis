@@ -27,7 +27,11 @@ public class TestCaseImport_UploadTest extends BaseTest {
                 .correctLogin();
         new CreateProjectStep()
                 .createProject(randomProjectName, randomProjectCode);
-        Assert.assertEquals(new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(), randomProjectName);
+
+        Assert.assertEquals(
+                new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(),
+                randomProjectName
+        );
     }
 
     @Test(

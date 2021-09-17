@@ -5,30 +5,30 @@
 <suite name="Main Test Suite">
     <test name="SmokeUITest">
         <classes>
-            <class name="tests.ui.ProjectCreateCorrectName_BoundaryTest"></class>
-            <class name="tests.ui.CustomFieldsUpgradeSubscription_DialogWindowTest"></class>
-            <class name="tests.ui.NegativeBoundaryTest"></class>
-            <class name="tests.ui.NegativeLoginTest"></class>
-            <class name="tests.ui.FailedLoginIncorrectPasswordTest"></class>
-            <class name="tests.ui.ProjectCreated_AlertTest"></class>
-            <class name="tests.ui.ProjectCreateIncorrectName_BoundaryTest"></class>
-            <class name="tests.ui.TestCaseCRUDTest"></class>
-            <class name="tests.ui.TestCaseImport_UploadTest"></class>
-            <class name="tests.ui.TestCaseImport_Upload_XLSTest"></class>
+            <class name="tests.ui.ProjectCreateCorrectName_BoundaryTest"/>
+            <class name="tests.ui.CustomFieldsUpgradeSubscription_DialogWindowTest"/>
+            <class name="tests.ui.NegativeBoundaryTest"/>
+            <class name="tests.ui.NegativeLoginTest"/>
+            <class name="tests.ui.FailedLoginIncorrectPasswordTest"/>
+            <class name="tests.ui.ProjectCreated_AlertTest"/>
+            <class name="tests.ui.ProjectCreateIncorrectName_BoundaryTest"/>
+            <class name="tests.ui.TestCase_CRUDTest"/>
+            <class name="tests.ui.TestCaseImport_UploadTest"/>
+            <class name="tests.ui.TestCaseImport_Upload_XLSTest"/>
         </classes>
     </test>
 
     <test name="SmokeApiTest">
-           <classes>
-            <class name="tests.api.DeleteSuiteProject"></class>
-            <class name="tests.api.GetAllSuites"></class>
-            <class name="tests.api.GetProjectByCode"></class>
-            <class name="tests.api.PostCreateTestSuite"></class>
-            <class name="tests.api.PatchUpdateSuite"></class>
-            <class name="tests.api.NegativeGetStatusCode_401"></class>
-            <class name="tests.api.NegativeGetStatusCode_404"></class>
-            <class name="tests.api.NegativePatchStatusCode_404"></class>
-            <class name="tests.api.NegativePatchStatusCode_405"></class>
+        <classes>
+            <class name="tests.api.DeleteSuiteProject"/>
+            <class name="tests.api.GetAllSuites"/>
+            <class name="tests.api.GetProjectByCode"/>
+            <class name="tests.api.PostCreateTestSuite"/>
+            <class name="tests.api.PatchUpdateSuite"/>
+            <class name="tests.api.NegativeGetStatusCode_401"/>
+            <class name="tests.api.NegativeGetStatusCode_404"/>
+            <class name="tests.api.NegativePatchStatusCode_404"/>
+            <class name="tests.api.NegativePatchStatusCode_405"/>
         </classes>
     </test>
 </suite>

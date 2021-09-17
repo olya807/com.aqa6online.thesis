@@ -18,10 +18,10 @@ public class NegativeBoundaryTest extends BaseTest {
         String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
         String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
-        new LoginStep()
-                .correctLogin();
-        new CreateProjectStep()
-                .createProject(randomProjectName,randomProjectCode);
+        new LoginStep().correctLogin();
+
+        new CreateProjectStep().createProject(randomProjectName,randomProjectCode);
+
         new CreateCaseStep()
                 .createCaseWithTitleOnly(randomProjectCode, TestCase.builder().title(tooLongTitle).build())
                 .getTooLongTitleMessage()

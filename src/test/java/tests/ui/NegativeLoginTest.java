@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import steps.LoginStep;
 
 public class NegativeLoginTest extends BaseTest {
+
     @Test
     @Description("Login with incorrect 'Email' field value")
     public void loginWithIncorrectEmailFieldValue() {

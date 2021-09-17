@@ -4,7 +4,7 @@ import endpoints.UiEndpoints;
 import pages.ProjectPage;
 
 public class DeleteCaseStep {
-    public ProjectPage deleteCase(String randomProjectCode, String randomTestCaseName){
+    public ProjectPage deleteCase(String randomProjectCode, String randomTestCaseName) {
 
         ProjectPage projectPage = new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode));
         projectPage

@@ -37,8 +37,9 @@ public class ProjectsPage extends BasePage {
 
     public ProjectsPage fillProjectSearchInput(String projectName){
         projectSearchField().sendKeys(projectName);
-        return new ProjectsPage(false,String.format(UiEndpoints.PROJECTS));
+        return new ProjectsPage(false, UiEndpoints.PROJECTS);
     }
+
     public SelenideElement noProjectMessage(){
         return $x("//*[@class='no-project mt-4']");
     }

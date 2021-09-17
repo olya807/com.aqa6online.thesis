@@ -5,10 +5,11 @@ import models.TestCase;
 import pages.ProjectPage;
 
 public class UpdateCaseStep {
-    public ProjectPage updateCase(String randomProjectCode, String randomTestCaseName, TestCase testCase2) {
+
+    public ProjectPage updateCase(String randomProjectCode, String randomTestCaseTitle, TestCase testCase2) {
         ProjectPage projectPage = new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode));
         projectPage
-                .getTestCaseHeader(randomTestCaseName, randomProjectCode)
+                .getTestCaseHeader(randomTestCaseTitle, randomProjectCode)
                 .clickEditButton(randomProjectCode)
                 .updateCase(testCase2)
                 .clickSaveButton();

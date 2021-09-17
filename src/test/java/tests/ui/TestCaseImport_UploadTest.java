@@ -61,7 +61,7 @@ public class TestCaseImport_UploadTest extends BaseTest {
         casePage
                 .submitBtnClick()
                 .getAlertMessage()
-                .shouldHave(Condition.exactText("0 suites and 0 cases were successfully imported!"));
+                .shouldHave(Condition.exactText("0 suites and 1 cases were successfully imported!"));
 
         Assert.assertTrue(isFileUploaded);
     }

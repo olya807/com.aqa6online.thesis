@@ -9,15 +9,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CasePage;
 import pages.ProjectPage;
-import steps.LoginStep;
 import steps.CreateProjectStep;
+import steps.LoginStep;
 
 import java.io.File;
 
 public class TestCaseImport_UploadTest extends BaseTest {
 
-   final String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-   final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+    final String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
+    final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
     @Test(description = "Upload test: create project")
     @Description("Create project with correct name")
@@ -29,7 +29,6 @@ public class TestCaseImport_UploadTest extends BaseTest {
                 .createProject(randomProjectName, randomProjectCode);
         Assert.assertEquals(new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(), randomProjectName);
     }
-
 
     @Test(
             dependsOnMethods = "createProjectTest",

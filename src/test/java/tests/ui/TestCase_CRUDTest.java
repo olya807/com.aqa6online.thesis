@@ -14,12 +14,10 @@ import static com.codeborne.selenide.Condition.visible;
 
 public class TestCase_CRUDTest extends BaseTest {
 
-    ProjectPage projectPage;
-    ProjectsPage projectsPage;
+
     final String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
     final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
-    String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+    final String randomTestCaseName = RandomStringUtils.randomAlphanumeric(15);
 
     @Test
     @Description("Create project with correct name")
@@ -39,7 +37,7 @@ public class TestCase_CRUDTest extends BaseTest {
     public void testCaseCreateTest() {
 
         new CreateCaseStep()
-                .createCase(randomProjectCode, testCase)
+                .createCase(randomProjectCode, testCaseBuilder)
                 .alertMessageCaseCreated()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was created successfully!"));
@@ -49,7 +47,8 @@ public class TestCase_CRUDTest extends BaseTest {
     @Description("Update test case")
     public void testCaseUpdateTest() {
 
-        new UpdateCaseStep().updateCase(randomProjectCode, randomTestCaseName, testCase2)
+        new UpdateCaseStep()
+                .updateCase(randomProjectCode, randomTestCaseName, testCase2Builder)
                 .alertMessageCaseEdited()
                 .shouldBe(visible)
                 .shouldHave(Condition.exactText("Test case was edited successfully!"));

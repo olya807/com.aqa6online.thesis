@@ -1,7 +1,7 @@
 package steps;
 
 import endpoints.UiEndpoints;
-import models.ui.TestCase;
+import models.TestCase;
 import pages.CasePage;
 import pages.ProjectPage;
 

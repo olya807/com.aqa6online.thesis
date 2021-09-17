@@ -14,16 +14,15 @@ import pages.ProjectPage;
 import pages.ProjectsPage;
 
 import java.io.File;
-import java.util.Locale;
 
 public class TestCaseImport_UploadTest extends BaseTest {
 
     ProjectPage projectPage;
     ProjectsPage projectsPage;
-    String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
-    String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
+    final String randomProjectName = RandomStringUtils.randomAlphanumeric(15);
+    final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
 
-    @Test
+    @Test(description = "Upload test: create project")
     @Description("Create project with correct name")
     public void createProjectTest() {
 
@@ -41,7 +40,10 @@ public class TestCaseImport_UploadTest extends BaseTest {
         projectPage.getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
     }
 
-    @Test
+    @Test(
+            dependsOnMethods = "createProjectTest",
+            description = "Upload test: upload test case file"
+    )
     @Description("Upload test case file")
     public void uploadTestCaseFileTest() {
 
@@ -59,7 +61,7 @@ public class TestCaseImport_UploadTest extends BaseTest {
         casePage
                 .submitBtnClick()
                 .getAlertMessage()
-                .shouldHave(Condition.exactText("0 suites and 0 cases were successfully imported!"));
+                .shouldHave(Condition.exactText("0 suites and 1 cases were successfully imported!"));
 
         Assert.assertTrue(isFileUploaded);
     }

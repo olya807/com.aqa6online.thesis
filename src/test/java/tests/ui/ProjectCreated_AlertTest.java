@@ -19,7 +19,7 @@ public class ProjectCreated_AlertTest extends BaseTest {
     ProjectPage projectPage;
     ProjectsPage projectsPage;
 
-    @Test
+    @Test(description = "Alert test")
     @Description("Create project and check alert message")
     public void checkCreateProjectAlert() {
 

@@ -1,4 +1,4 @@
-package models.api.suitesModels;
+package models.suitesModels;
 
 import com.google.gson.annotations.Expose;
 import lombok.Builder;

@@ -3,9 +3,9 @@ import baseEntities.BaseAdapter;
 import endpoints.api.ProjectsEndpoints;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import models.api.projectModels.GetResponseResult;
-import models.api.projectModels.PostResponseResult;
-import models.api.projectModels.Project;
+import models.projectModels.GetResponseResult;
+import models.projectModels.PostResponseResult;
+import models.projectModels.Project;
 import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;

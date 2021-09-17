@@ -4,10 +4,10 @@ import baseEntities.BaseAdapter;
 import endpoints.api.SuitesEndpoints;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import models.api.projectModels.PostResponseResult;
-import models.api.suitesModels.Suite;
-import models.api.suitesModels.SuiteGetAllResponseResult;
-import models.api.suitesModels.SuiteResponseResult;
+import models.projectModels.PostResponseResult;
+import models.suitesModels.Suite;
+import models.suitesModels.SuiteGetAllResponseResult;
+import models.suitesModels.SuiteResponseResult;
 import org.apache.http.HttpStatus;
 
 import static io.restassured.RestAssured.given;

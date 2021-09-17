@@ -3,9 +3,9 @@ package tests.api;
 import adapters.ProjectsAdapter;
 import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
-import models.api.projectModels.GetResponseResult;
-import models.api.projectModels.PostResponseResult;
-import models.api.suitesModels.SuiteResponseResult;
+import models.projectModels.GetResponseResult;
+import models.projectModels.PostResponseResult;
+import models.suitesModels.SuiteResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

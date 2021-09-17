@@ -4,18 +4,18 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
 import io.qameta.allure.selenide.AllureSelenide;
-import models.ui.TestCase;
+import models.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 
 public class BaseTest {
-    protected String randomTestCaseName = RandomStringUtils.randomAlphanumeric(15);
-    protected String updatedPreconds = RandomStringUtils.randomAlphanumeric(15);
-    protected TestCase testCase;
-    protected TestCase testCase2;
+
+    protected TestCase testCaseBuilder;
+    protected TestCase testCase2Builder;
 
     @BeforeSuite
     public static void setupAllureReports() {
@@ -29,11 +29,11 @@ public class BaseTest {
         org.apache.log4j.BasicConfigurator.configure();
     }
 
-    @BeforeSuite
-    public void prepareData() {
+    @BeforeClass
+    public void prepareModelsData() {
 
-        testCase = TestCase.builder()
-                .title(randomTestCaseName)
+        testCaseBuilder = TestCase.builder()
+                .title(RandomStringUtils.randomAlphanumeric(15))
                 .status("Actual")
                 .description(RandomStringUtils.randomAlphabetic(10))
                 .suite("Test cases without suite")
@@ -49,9 +49,9 @@ public class BaseTest {
                 .postconditions(RandomStringUtils.randomAlphanumeric(50))
                 .build();
 
-        testCase2 = TestCase.builder()
+        testCase2Builder = TestCase.builder()
                 .layer("API")
-                .preconditions(updatedPreconds)
+                .preconditions(RandomStringUtils.randomAlphanumeric(15))
                 .build();
     }
 
@@ -63,7 +63,13 @@ public class BaseTest {
         Configuration.browser = ReadProperties.getInstance().getBrowserName();
         Configuration.startMaximized = true;
         Configuration.headless = false;
-        Configuration.pageLoadTimeout = 15000;
+        Configuration.pageLoadTimeout = 30000;
         //Configuration.fastSetValue = false;
+    }
+
+    @AfterClass
+    public void tearDown() {
+
+        clearBrowserCookies();
     }
 }

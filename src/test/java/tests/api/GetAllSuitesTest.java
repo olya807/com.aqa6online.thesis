@@ -5,44 +5,34 @@ import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import models.suitesModels.Suite;
+import models.suitesModels.SuiteGetAllResponseResult;
 import models.suitesModels.SuiteResponseResult;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PatchUpdateSuite extends BaseApiTest {
-
-    protected int suiteId;
-    protected String newSuiteTitle = RandomStringUtils.randomAlphabetic(10);
+public class GetAllSuitesTest extends BaseApiTest {
 
     @Test
     public void createProjectsTest(){
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
         Assert.assertEquals(actProject.getResult().getCode(), expProject.getCode().toUpperCase());
     }
-
     @Test(dependsOnMethods = "createProjectsTest")
     public void postCreateTestSuite() {
         SuiteResponseResult suite = new SuitesAdapter().postCreateSuite(expSuite, projectCode.toUpperCase());
-        suiteId = suite.getResult().getId();
     }
 
     @Test(dependsOnMethods = "postCreateTestSuite")
-    public void patchUpdateSuite() {
-        Suite expSuite = Suite.builder()
-                .title(newSuiteTitle)
-                .description(suiteDesc)
-                .preconditions(suitePreconds )
-                .build();
-        PostResponseResult suite = new SuitesAdapter().updateSuite(expSuite, projectCode.toUpperCase(), suiteId);
-        Assert.assertTrue(suite.isStatus());
+    public void getAllSuitesTest() {
+        SuiteGetAllResponseResult suiteList = new SuitesAdapter().getAllSuites(projectCode.toUpperCase());
+        Assert.assertEquals(suiteList.getResult().getEntities().get(0).getTitle(), suiteTitle);
     }
 
-    @Test(dependsOnMethods = "patchUpdateSuite")
+    @Test(dependsOnMethods = "getAllSuitesTest")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
+
     }
 }
 

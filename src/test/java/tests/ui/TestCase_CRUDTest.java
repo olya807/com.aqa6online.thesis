@@ -17,7 +17,6 @@ public class TestCase_CRUDTest extends BaseTest {
 
     final String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
     final String randomProjectCode = RandomStringUtils.randomAlphabetic(6).toUpperCase();
-    final String randomTestCaseName = RandomStringUtils.randomAlphanumeric(15);
 
     @Test
     @Description("Create project with correct name")

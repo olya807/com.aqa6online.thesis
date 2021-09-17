@@ -3,46 +3,41 @@ package tests.api;
 import adapters.ProjectsAdapter;
 import baseEntities.BaseApiTest;
 import endpoints.api.ProjectsEndpoints;
-import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import models.projectModels.Project;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class NegativePatchStatusCode_404 extends BaseApiTest {
+public class NegativeGetStatusCode_401Test extends BaseApiTest {
 
     @Test
-    public void createProjectsTest() {
+    public void createProjectsTest(){
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
         Assert.assertEquals(actProject.getResult().getCode(), expProject.getCode().toUpperCase());
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void negativePatchUpdateProjectWithSC_404() {
-        Project project = Project.builder()
-                .title(projectName + "qwerty")
-                .code(projectCode)
-                .description("lorem ipsum")
-                .build();
+    public void negativeGetProjectByCodeTestWithSC_401() {
         Response response = given()
-                .body(project, ObjectMapperType.GSON)
                 .when()
-                .patch(String.format(ProjectsEndpoints.INVALID_ENDPOINT,projectCode))
+                .header("Token", RandomStringUtils.randomNumeric(15))
+                .get(String.format(ProjectsEndpoints.GET_PROJECT,projectCode))
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_NOT_FOUND)
+                .statusCode(HttpStatus.SC_UNAUTHORIZED)
                 .extract().response();
     }
 
-    @Test(dependsOnMethods = "negativePatchUpdateProjectWithSC_404")
+    @Test(dependsOnMethods = "negativeGetProjectByCodeTestWithSC_401")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
 
     }
 }
+

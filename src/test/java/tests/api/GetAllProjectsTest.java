@@ -7,8 +7,7 @@ import models.projectModels.PostResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GetProjectByCode extends BaseApiTest {
-
+public class GetAllProjectsTest extends BaseApiTest {
     @Test
     public void createProjectsTest() {
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
@@ -16,12 +15,12 @@ public class GetProjectByCode extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void getProjectByCodeTest() {
-        PostResponseResult project = new ProjectsAdapter().getProject(projectCode.toUpperCase());
-        Assert.assertEquals(projectName, project.getResult().getTitle());
+    public void getAllProjectsTest() {
+        GetResponseResult projectsList = new ProjectsAdapter().getAllProjects();
+        System.out.println(projectsList.getResult().getEntities().get(0).getCode());
     }
 
-    @Test(dependsOnMethods = "getProjectByCodeTest")
+    @Test(dependsOnMethods = "getAllProjectsTest")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);

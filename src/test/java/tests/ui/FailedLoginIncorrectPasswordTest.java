@@ -4,11 +4,9 @@ import baseEntities.BaseTest;
 import com.codeborne.selenide.Condition;
 import core.ReadProperties;
 import io.qameta.allure.Description;
-import models.ui.TestCase;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
-import steps.CreateCaseStep;
-import steps.CreateProjectStep;
+
 import steps.LoginStep;
 
 public class FailedLoginIncorrectPasswordTest extends BaseTest {

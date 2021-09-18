@@ -23,11 +23,13 @@ public class TestCaseImport_Upload_XLSTest extends BaseTest {
     @Description("Create project with correct name")
     public void createProjectTest() {
 
-        new LoginStep()
-                .correctLogin();
-        new CreateProjectStep()
-                .createProject(randomProjectName, randomProjectCode);
-        Assert.assertEquals(new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(), randomProjectName);
+        new LoginStep().correctLogin();
+        new CreateProjectStep().createProject(randomProjectName, randomProjectCode);
+
+        Assert.assertEquals(
+                new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(),
+                randomProjectName
+        );
     }
 
 
@@ -42,12 +44,11 @@ public class TestCaseImport_Upload_XLSTest extends BaseTest {
                 .getFileUploadField()
                 .uploadFile(file);
 
-               casePage
+        casePage
                 .selectUploadSourceType()
                 .submitBtnClick()
                 .checkUploadingResults(randomProjectCode)
                 .getAlertMessage()
                 .shouldHave(Condition.exactText("3 suites and 2 cases were successfully imported!"));
-
     }
 }

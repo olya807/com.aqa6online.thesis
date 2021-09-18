@@ -17,14 +17,17 @@ public class NegativeGetStatusCode_404Test extends BaseApiTest {
     @Test
     public void createProjectsTest(){
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
-        Assert.assertEquals(actProject.getResult().getCode(), expProject.getCode().toUpperCase());
+        Assert.assertEquals(
+                actProject.getResult().getCode(),
+                expProject.getCode().toUpperCase()
+        );
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
     public void negativeGetProjectByCodeTestWithSC_404() {
-        Response response = given()
+        given()
                 .when()
-                .get(String.format(ProjectsEndpoints.INVALID_ENDPOINT, projectCode))
+                .get(ProjectsEndpoints.INVALID_ENDPOINT)
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_NOT_FOUND)

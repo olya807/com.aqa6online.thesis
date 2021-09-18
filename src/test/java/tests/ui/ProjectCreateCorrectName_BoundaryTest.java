@@ -8,10 +8,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-import pages.ProjectPage;
-import steps.LoginStep;
 import steps.CreateProjectStep;
 import steps.DeleteProjectStep;
+import steps.LoginStep;
 
 import static com.codeborne.selenide.Condition.visible;
 
@@ -28,11 +27,10 @@ public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
         String randomProjectName = RandomStringUtils.randomAlphanumeric(255);
         String randomProjectCode = RandomStringUtils.randomAlphanumeric(6);
 
-        new LoginStep()
-                .correctLogin();
+        new LoginStep().correctLogin();
 
         new CreateProjectStep()
-                .createProject(randomProjectName,randomProjectCode)
+                .createProject(randomProjectName, randomProjectCode)
                 .getProjectNameHeader().shouldHave(Condition.exactText(randomProjectName));
 
         LOGGER.error(String.format(
@@ -46,8 +44,5 @@ public class ProjectCreateCorrectName_BoundaryTest extends BaseTest {
                 .shouldBe(Condition.not(visible))
                 .shouldHave(Condition.exactText("Looks like you don’t have any projects yet."));
     }
-
-
-
-    }
+}
 

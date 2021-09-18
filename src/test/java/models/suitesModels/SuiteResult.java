@@ -8,6 +8,6 @@ import lombok.Data;
 @Builder
 public class SuiteResult {
     @Expose
-   int id;
+    int id;
 
 }

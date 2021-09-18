@@ -16,7 +16,10 @@ public class DeleteSuiteProjectTest extends BaseApiTest {
     @Test
     public void createProjectsTest(){
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
-        Assert.assertEquals(actProject.getResult().getCode(), expProject.getCode().toUpperCase());
+        Assert.assertEquals(
+                actProject.getResult().getCode(),
+                expProject.getCode().toUpperCase()
+        );
     }
 
     @Test(dependsOnMethods = "createProjectsTest")

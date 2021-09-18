@@ -17,8 +17,8 @@ public class ProjectCreateIncorrectName_BoundaryTest extends BaseTest {
         String randomProjectName = RandomStringUtils.randomAlphanumeric(256);
         String projectNameErrorMessage = "The title may not be greater than 255 characters.";
 
-        new LoginStep()
-                .correctLogin();
+        new LoginStep().correctLogin();
+
         new CreateProjectStep()
                 .incorrectProjectCreation(randomProjectName)
                 .getProjectNameErrorMessage()

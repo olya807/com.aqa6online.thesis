@@ -15,7 +15,6 @@ public class FailedLoginIncorrectPasswordTest extends BaseTest {
     @Description("Failed Test: Login with incorrect 'Password' field value")
     public void failedLoginIncorrectPasswordValueTest() {
 
-        String loginErrorMessage = "These credentials do not match our records.";
         String incorrectPSW = RandomStringUtils.randomAlphanumeric(8);
 
         new LoginStep()

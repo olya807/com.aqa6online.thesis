@@ -8,10 +8,7 @@ import models.projectModels.PostResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
-
 public class PostCreateTestSuiteTest extends BaseApiTest {
-
 
     @Test
     public void createProjectsTest(){

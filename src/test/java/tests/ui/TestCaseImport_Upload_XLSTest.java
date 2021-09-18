@@ -32,7 +32,6 @@ public class TestCaseImport_Upload_XLSTest extends BaseTest {
         );
     }
 
-
     @Test
     @Description("Upload test case file")
     public void uploadTestCaseFileTest() {

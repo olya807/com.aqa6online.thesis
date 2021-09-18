@@ -3,7 +3,6 @@ package tests.api;
 import adapters.ProjectsAdapter;
 import baseEntities.BaseApiTest;
 import endpoints.api.ProjectsEndpoints;
-import io.restassured.response.Response;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
 import org.apache.http.HttpStatus;

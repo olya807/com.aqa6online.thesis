@@ -12,7 +12,8 @@ import steps.LoginStep;
 public class NegativeBoundaryTest extends BaseTest {
 
     @Test(description = "Create test case with too long title")
-    public void createCaseWithTooLongTitle(){
+    public void createCaseWithTooLongTitle() {
+
         String titleErrorMessage = "The title may not be greater than 255 characters.";
         String tooLongTitle = RandomStringUtils.randomAlphabetic(256);
         String randomProjectName = RandomStringUtils.randomAlphanumeric(20);
@@ -20,7 +21,7 @@ public class NegativeBoundaryTest extends BaseTest {
 
         new LoginStep().correctLogin();
 
-        new CreateProjectStep().createProject(randomProjectName,randomProjectCode);
+        new CreateProjectStep().createProject(randomProjectName, randomProjectCode);
 
         new CreateCaseStep()
                 .createCaseWithTitleOnly(randomProjectCode, TestCase.builder().title(tooLongTitle).build())

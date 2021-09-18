@@ -3,7 +3,6 @@ package pages;
 import baseEntities.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
-import elements.Input;
 import endpoints.UiEndpoints;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -40,7 +39,7 @@ public class ProjectsPage extends BasePage {
         return new ProjectsPage(false, UiEndpoints.PROJECTS);
     }
 
-    public SelenideElement noProjectMessage(){
+    public SelenideElement noProjectMessage() {
         return $x("//*[@class='no-project mt-4']");
     }
 
@@ -48,4 +47,8 @@ public class ProjectsPage extends BasePage {
         return $x("//input[@placeholder='Search for projects']");
     }
 
+    public ProjectPage clickSearchResult(String projectTitle, String projectCode){
+        $x(String.format("//a[contains(text(),'%s')]",projectTitle)).click();
+        return new ProjectPage(false,String.format(UiEndpoints.PROJECT,projectCode));
+    }
 }

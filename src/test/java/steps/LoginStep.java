@@ -2,12 +2,13 @@ package steps;
 
 import core.ReadProperties;
 import endpoints.UiEndpoints;
+import io.qameta.allure.Step;
 import pages.LoginPage;
-import pages.ProjectCreatePage;
 import pages.ProjectsPage;
 
 public class LoginStep {
 
+    @Step
     public ProjectsPage correctLogin() {
 
         new LoginPage(true, UiEndpoints.LOGIN)
@@ -17,6 +18,7 @@ public class LoginStep {
         return new ProjectsPage(false, UiEndpoints.PROJECTS);
     }
 
+    @Step
     public LoginPage incorrectLogin(String incorrectLogin, String incorrectPsw) {
 
         new LoginPage(true, UiEndpoints.LOGIN)

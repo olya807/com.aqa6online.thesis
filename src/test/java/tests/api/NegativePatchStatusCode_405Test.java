@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class NegativePatchStatusCode_404 extends BaseApiTest {
+public class NegativePatchStatusCode_405Test extends BaseApiTest {
 
     @Test
     public void createProjectsTest() {
@@ -25,7 +25,7 @@ public class NegativePatchStatusCode_404 extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void negativePatchUpdateProjectWithSC_404() {
+    public void negativePatchUpdateProjectWithSC_405() {
         Project project = Project.builder()
                 .title(projectName + "qwerty")
                 .code(projectCode)
@@ -35,16 +35,17 @@ public class NegativePatchStatusCode_404 extends BaseApiTest {
         given()
                 .body(project, ObjectMapperType.GSON)
                 .when()
-                .patch(ProjectsEndpoints.INVALID_ENDPOINT)
+                .patch(String.format(ProjectsEndpoints.UPDATE_PROJECT, projectCode))
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_NOT_FOUND)
+                .statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED)
                 .extract().response();
     }
 
-    @Test(dependsOnMethods = "negativePatchUpdateProjectWithSC_404")
+    @Test(dependsOnMethods = "negativePatchUpdateProjectWithSC_405")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
+
     }
 }

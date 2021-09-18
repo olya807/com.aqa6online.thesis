@@ -8,6 +8,7 @@ public interface UiEndpoints {
     String PROJECT_SETTINGS = "project/%s/settings/general";
     String PROJECT_DELETE_CONFIRMATION = "project/%s/delete";
     String PROJECT = "project/%s";
+    String SUITE = "project/%s?suite=%d";
     String CASE_IMPORT = "case/%s/import";
     String CASE_CREATE = "case/%s/create";
     String CASE_EDIT = "case/%s/edit/1";

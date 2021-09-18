@@ -1,20 +1,16 @@
 package tests.api;
 
 import adapters.ProjectsAdapter;
-import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import models.suitesModels.SuiteResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DeleteSuiteProject extends BaseApiTest {
-
-    protected int suiteId;
+public class GetProjectByCodeTest extends BaseApiTest {
 
     @Test
-    public void createProjectsTest(){
+    public void createProjectsTest() {
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
         Assert.assertEquals(
                 actProject.getResult().getCode(),
@@ -23,18 +19,15 @@ public class DeleteSuiteProject extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void postCreateTestSuite() {
-        SuiteResponseResult suite = new SuitesAdapter().postCreateSuite(expSuite, projectCode.toUpperCase());
-        suiteId = suite.getResult().getId();
+    public void getProjectByCodeTest() {
+        PostResponseResult project = new ProjectsAdapter().getProject(projectCode.toUpperCase());
+        Assert.assertEquals(
+                projectName,
+                project.getResult().getTitle()
+        );
     }
 
-    @Test(dependsOnMethods = "postCreateTestSuite")
-    public void deleteSuite() {
-        PostResponseResult suiteDel = new SuitesAdapter().deleteSuite(projectCode.toUpperCase(), suiteId);
-        Assert.assertTrue(suiteDel.isStatus());
-    }
-
-    @Test(dependsOnMethods = "deleteSuite")
+    @Test(dependsOnMethods = "getProjectByCodeTest")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);

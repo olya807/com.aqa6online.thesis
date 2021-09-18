@@ -3,16 +3,17 @@ package tests.api;
 import adapters.ProjectsAdapter;
 import baseEntities.BaseApiTest;
 import endpoints.api.ProjectsEndpoints;
+import io.restassured.mapper.ObjectMapperType;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import org.apache.commons.lang.RandomStringUtils;
+import models.projectModels.Project;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class NegativeGetStatusCode_401 extends BaseApiTest {
+public class NegativePatchStatusCode_404Test extends BaseApiTest {
 
     @Test
     public void createProjectsTest() {
@@ -24,21 +25,26 @@ public class NegativeGetStatusCode_401 extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void negativeGetProjectByCodeTestWithSC_401() {
+    public void negativePatchUpdateProjectWithSC_404() {
+        Project project = Project.builder()
+                .title(projectName + "qwerty")
+                .code(projectCode)
+                .description("lorem ipsum")
+                .build();
+
         given()
+                .body(project, ObjectMapperType.GSON)
                 .when()
-                .header("Token", RandomStringUtils.randomNumeric(15))
-                .get(String.format(ProjectsEndpoints.GET_PROJECT, projectCode))
+                .patch(ProjectsEndpoints.INVALID_ENDPOINT)
                 .then()
                 .log().body()
-                .statusCode(HttpStatus.SC_UNAUTHORIZED)
+                .statusCode(HttpStatus.SC_NOT_FOUND)
                 .extract().response();
     }
 
-    @Test(dependsOnMethods = "negativeGetProjectByCodeTestWithSC_401")
+    @Test(dependsOnMethods = "negativePatchUpdateProjectWithSC_404")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
     }
 }
-

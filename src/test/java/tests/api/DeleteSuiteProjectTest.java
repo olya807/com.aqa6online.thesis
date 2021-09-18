@@ -5,16 +5,13 @@ import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import models.suitesModels.Suite;
 import models.suitesModels.SuiteResponseResult;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PatchUpdateSuite extends BaseApiTest {
+public class DeleteSuiteProjectTest extends BaseApiTest {
 
     protected int suiteId;
-    protected String newSuiteTitle = RandomStringUtils.randomAlphabetic(10);
 
     @Test
     public void createProjectsTest(){
@@ -32,20 +29,14 @@ public class PatchUpdateSuite extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "postCreateTestSuite")
-    public void patchUpdateSuite() {
-        Suite expSuite = Suite.builder()
-                .title(newSuiteTitle)
-                .description(suiteDesc)
-                .preconditions(suitePreconds )
-                .build();
-        PostResponseResult suite = new SuitesAdapter().updateSuite(expSuite, projectCode.toUpperCase(), suiteId);
-        Assert.assertTrue(suite.isStatus());
+    public void deleteSuite() {
+        PostResponseResult suiteDel = new SuitesAdapter().deleteSuite(projectCode.toUpperCase(), suiteId);
+        Assert.assertTrue(suiteDel.isStatus());
     }
 
-    @Test(dependsOnMethods = "patchUpdateSuite")
+    @Test(dependsOnMethods = "deleteSuite")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
     }
 }
-

@@ -1,16 +1,13 @@
 package tests.api;
 
 import adapters.ProjectsAdapter;
-import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
 import models.projectModels.GetResponseResult;
 import models.projectModels.PostResponseResult;
-import models.suitesModels.SuiteGetAllResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GetAllSuites extends BaseApiTest {
-
+public class GetAllProjectsTest extends BaseApiTest {
     @Test
     public void createProjectsTest() {
         PostResponseResult actProject = new ProjectsAdapter().postCreateProject(expProject);
@@ -21,20 +18,14 @@ public class GetAllSuites extends BaseApiTest {
     }
 
     @Test(dependsOnMethods = "createProjectsTest")
-    public void postCreateTestSuite() {
-        new SuitesAdapter().postCreateSuite(expSuite, projectCode.toUpperCase());
+    public void getAllProjectsTest() {
+        GetResponseResult projectsList = new ProjectsAdapter().getAllProjects();
+        System.out.println(projectsList.getResult().getEntities().get(0).getCode());
     }
 
-    @Test(dependsOnMethods = "postCreateTestSuite")
-    public void getAllSuitesTest() {
-        SuiteGetAllResponseResult suiteList = new SuitesAdapter().getAllSuites(projectCode.toUpperCase());
-        Assert.assertEquals(suiteList.getResult().getEntities().get(0).getTitle(), suiteTitle);
-    }
-
-    @Test(dependsOnMethods = "getAllSuitesTest")
+    @Test(dependsOnMethods = "getAllProjectsTest")
     public void deleteProject() {
         GetResponseResult projectDel = new ProjectsAdapter().deleteProject(projectCode.toUpperCase());
         System.out.println(projectDel);
     }
 }
-

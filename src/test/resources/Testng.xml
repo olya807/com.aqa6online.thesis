@@ -19,16 +19,16 @@
     </test>
 
     <test name="SmokeApiTest">
-        <classes>
-            <class name="tests.api.DeleteSuiteProject"/>
-            <class name="tests.api.GetAllSuites"/>
-            <class name="tests.api.GetProjectByCode"/>
-            <class name="tests.api.PostCreateTestSuite"/>
-            <class name="tests.api.PatchUpdateSuite"/>
-            <class name="tests.api.NegativeGetStatusCode_401"/>
-            <class name="tests.api.NegativeGetStatusCode_404"/>
-            <class name="tests.api.NegativePatchStatusCode_404"/>
-            <class name="tests.api.NegativePatchStatusCode_405"/>
+           <classes>
+            <class name="tests.api.DeleteSuiteProjectTest"/>
+            <class name="tests.api.GetAllSuitesTest"/>
+            <class name="tests.api.GetProjectByCodeTest"/>
+            <class name="tests.api.PostCreateTestSuiteTest"/>
+            <class name="tests.api.PatchUpdateSuiteTest"/>
+            <class name="tests.api.NegativeGetStatusCode_401Test"/>
+            <class name="tests.api.NegativeGetStatusCode_404Test"/>
+            <class name="tests.api.NegativePatchStatusCode_404Test"/>
+            <class name="tests.api.NegativePatchStatusCode_405Test"/>
         </classes>
     </test>
 </suite>

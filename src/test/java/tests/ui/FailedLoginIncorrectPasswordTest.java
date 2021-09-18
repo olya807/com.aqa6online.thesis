@@ -6,7 +6,6 @@ import core.ReadProperties;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.Test;
-
 import steps.LoginStep;
 
 public class FailedLoginIncorrectPasswordTest extends BaseTest {

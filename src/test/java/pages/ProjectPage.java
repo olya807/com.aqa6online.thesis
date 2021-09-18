@@ -4,10 +4,9 @@ import baseEntities.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
-import elements.Input;
-import endpoints.UiEndpoints;
 import elements.Button;
 import endpoints.UiEndpoints;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -98,6 +97,11 @@ public class ProjectPage extends BasePage {
         return new ProjectPage(false, String.format(UiEndpoints.PROJECT, projectCode));
     }
 
+    public ProjectPage clickDeleteSuiteConfirmationButton(String projectCode) {
+        $(".btn-danger").click();
+        return new ProjectPage(false, String.format(UiEndpoints.PROJECT, projectCode));
+    }
+
     public CasePage clickEditButton(String projectCode) {
         new Button(" Edit").click();
         return new CasePage(false, String.format(UiEndpoints.CASE_EDIT, projectCode));
@@ -135,10 +139,25 @@ public class ProjectPage extends BasePage {
         return $x("//a[contains(text(),'Example')]");
     }
 
+    @Step
     public ProjectPage checkUploadingResults(String projectCode) {
         uploadedExample()
                 .shouldBe(Condition.visible)
                 .shouldHave(Condition.exactText("Example"));
-        return new ProjectPage(false, String.format(UiEndpoints.PROJECT,projectCode));
+        return new ProjectPage(false, String.format(UiEndpoints.PROJECT, projectCode));
+    }
+
+    private SelenideElement deleteSuiteButton(String projectTitle) {
+        return $x(String.format("//a[contains(text(),'%s')]/parent::span/descendant::i[@class='fa fa-trash']", projectTitle));
+    }
+
+    public ProjectPage clickDeleteSuiteButton(String projectTitle, String projectCode) {
+        deleteSuiteButton(projectTitle)
+                .click();
+        return new ProjectPage(false, String.format(UiEndpoints.PROJECT, projectCode));
+    }
+
+    public SelenideElement noSuitesMessage() {
+        return $x("//*[@class='no-project mt-4']");
     }
 }

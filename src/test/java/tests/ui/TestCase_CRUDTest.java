@@ -31,7 +31,6 @@ public class TestCase_CRUDTest extends BaseTest {
         );
     }
 
-
     @Test(dependsOnMethods = "createProjectTest")
     @Description("Create test case")
     public void testCaseCreateTest() {

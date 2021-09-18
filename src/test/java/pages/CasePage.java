@@ -4,12 +4,13 @@ import baseEntities.BasePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import core.ReadProperties;
-import endpoints.UiEndpoints;
-import models.TestCase;
 import elements.Button;
 import elements.Dropdown;
 import elements.EditableInput;
 import elements.Input;
+import endpoints.UiEndpoints;
+import io.qameta.allure.Step;
+import models.TestCase;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -81,7 +82,8 @@ public class CasePage extends BasePage {
         return new ProjectPage(false, UiEndpoints.PROJECT);
     }
 
-    public CasePage selectUploadSourceType(){
+    @Step
+    public CasePage selectUploadSourceType() {
         SelenideElement selectButton = $x("//button[@data-id = 'selectSource']");
         SelenideElement selectOption = $x("//span[contains(text(), 'SquashTM')]/ancestor::a");
         selectButton.shouldBe(Condition.visible);

@@ -6,7 +6,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class PostResponseResult{
+public class PostResponseResult {
+
     @Expose
     boolean status;
     @Expose

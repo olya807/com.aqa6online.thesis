@@ -22,12 +22,13 @@ public class TestCase_CRUDTest extends BaseTest {
     @Description("Create project with correct name")
     public void createProjectTest() {
 
-        new LoginStep()
-                .correctLogin();
-        new CreateProjectStep()
-                .createProject(randomProjectName, randomProjectCode);
-        Assert.assertEquals(new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode))
-                .getProjectNameHeader().getText(), randomProjectName);
+        new LoginStep().correctLogin();
+        new CreateProjectStep().createProject(randomProjectName, randomProjectCode);
+
+        Assert.assertEquals(
+                new ProjectPage(false, String.format(UiEndpoints.PROJECT, randomProjectCode)).getProjectNameHeader().getText(),
+                randomProjectName
+        );
     }
 
 

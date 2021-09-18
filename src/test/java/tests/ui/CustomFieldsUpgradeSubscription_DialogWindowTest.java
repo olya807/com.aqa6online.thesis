@@ -21,8 +21,7 @@ public class CustomFieldsUpgradeSubscription_DialogWindowTest extends BaseTest {
 
         String upgradeText = "Upgrade your subscription";
 
-        new LoginStep()
-                .correctLogin();
+        new LoginStep().correctLogin();
 
         upgradeSubscriptionPage = new MembersPage(true, UiEndpoints.WORKSPACE_MEMBERS)
                 .clickCustomFieldsMenuItemUpgrade();

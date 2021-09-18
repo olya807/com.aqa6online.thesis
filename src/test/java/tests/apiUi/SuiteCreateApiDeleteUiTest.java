@@ -4,14 +4,13 @@ import adapters.ProjectsAdapter;
 import adapters.SuitesAdapter;
 import baseEntities.BaseApiTest;
 import com.codeborne.selenide.Condition;
-import io.qameta.allure.Step;
 import models.projectModels.PostResponseResult;
 import models.suitesModels.SuiteGetAllResponseResult;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import steps.LoginStep;
 
-public class TestCaseCRUDApiUiTest extends BaseApiTest {
+public class SuiteCreateApiDeleteUiTest extends BaseApiTest {
 
     private String projectCodeFromAPI;
     private String projectNameFromAPI;

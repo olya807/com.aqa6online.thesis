@@ -65,7 +65,6 @@ public class BaseTest {
         Configuration.startMaximized = true;
         Configuration.headless = false;
         Configuration.pageLoadTimeout = 30000;
-        //Configuration.fastSetValue = false;
     }
 
     @AfterClass
